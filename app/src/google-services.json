@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "903301545011",
+    "project_id": "noodrop-c9be9",
+    "storage_bucket": "noodrop-c9be9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903301545011:android:6a5a796ae10357025d7746",
+        "android_client_info": {
+          "package_name": "com.noodrop.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIxl8d7h1m-UTGsv1mpwYEbT2D4dkqsuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="nd_bg">#FAFAF8</color>
+    <color name="nd_dark_bg">#0A0E17</color>
+    <color name="nd_orange">#F3701E</color>
+    <string name="app_name">Noodrop</string>
+    <string name="gcm_defaultSenderId" translatable="false">903301545011</string>
+    <string name="google_api_key" translatable="false">AIzaSyDIxl8d7h1m-UTGsv1mpwYEbT2D4dkqsuw</string>
+    <string name="google_app_id" translatable="false">1:903301545011:android:6a5a796ae10357025d7746</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDIxl8d7h1m-UTGsv1mpwYEbT2D4dkqsuw</string>
+    <string name="google_storage_bucket" translatable="false">noodrop-c9be9.firebasestorage.app</string>
+    <string name="project_id" translatable="false">noodrop-c9be9</string>
+    <style name="Theme.Noodrop" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/nd_bg</item>
+        <item name="android:windowBackground">@color/nd_bg</item>
+    </style>
+</resources>

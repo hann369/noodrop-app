@@ -1,0 +1,691 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.noodrop.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:4:22-64
+12    <!-- See https://developer.android.com/training/package-visibility/declaring for more details. -->
+13    <queries>
+13-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:10:5-18:15
+14
+15        <!-- Added to check the default browser that will host the AuthFlow. -->
+16        <intent>
+16-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:13:9-17:18
+17            <action android:name="android.intent.action.VIEW" />
+17-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:13-65
+17-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:21-62
+18
+19            <data android:scheme="http" />
+19-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+19-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+20        </intent>
+21        <!-- Added to check if Chrome is installed for browser-based payment authentication (e.g. 3DS1). -->
+22        <package android:name="com.android.chrome" /> <!-- Needs to be explicitly declared on Android R+ -->
+22-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:11:9-54
+22-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:11:18-51
+23        <package android:name="com.google.android.apps.maps" />
+23-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:33:9-64
+23-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:33:18-61
+24    </queries>
+25
+26    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+26-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:26:5-79
+26-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:26:22-76
+27
+28    <uses-feature
+28-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:26:5-28:35
+29        android:glEsVersion="0x00020000"
+29-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:27:9-41
+30        android:required="true" />
+30-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:28:9-32
+31
+32    <permission
+32-->[androidx.core:core:1.13.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\bf16116eb053a710754e0d43fcf815af\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+33        android:name="com.noodrop.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+33-->[androidx.core:core:1.13.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\bf16116eb053a710754e0d43fcf815af\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+34        android:protectionLevel="signature" />
+34-->[androidx.core:core:1.13.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\bf16116eb053a710754e0d43fcf815af\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+35
+36    <uses-permission android:name="com.noodrop.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+36-->[androidx.core:core:1.13.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\bf16116eb053a710754e0d43fcf815af\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+36-->[androidx.core:core:1.13.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\bf16116eb053a710754e0d43fcf815af\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+37    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+37-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ac845b8c64e1ec470c46ffe29c0f4385\transformed\recaptcha-18.4.0\AndroidManifest.xml:9:5-98
+37-->[com.google.android.recaptcha:recaptcha:18.4.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ac845b8c64e1ec470c46ffe29c0f4385\transformed\recaptcha-18.4.0\AndroidManifest.xml:9:22-95
+38
+39    <application
+39-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:6:5-25:19
+40        android:name="com.noodrop.app.NoodropApp"
+40-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:7:9-35
+41        android:allowBackup="true"
+41-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:8:9-35
+42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+42-->[androidx.core:core:1.13.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\bf16116eb053a710754e0d43fcf815af\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+43        android:debuggable="true"
+44        android:extractNativeLibs="false"
+45        android:icon="@mipmap/ic_launcher"
+45-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:9:9-43
+46        android:label="@string/app_name"
+46-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:10:9-41
+47        android:roundIcon="@mipmap/ic_launcher_round"
+47-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:11:9-54
+48        android:supportsRtl="true"
+48-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:12:9-35
+49        android:testOnly="true"
+50        android:theme="@style/Theme.Noodrop" >
+50-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:13:9-45
+51        <activity
+51-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:15:9-23:20
+52            android:name="com.noodrop.app.MainActivity"
+52-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:16:13-41
+53            android:exported="true"
+53-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:17:13-36
+54            android:windowSoftInputMode="adjustResize" >
+54-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:18:13-55
+55            <intent-filter>
+55-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:19:13-22:29
+56                <action android:name="android.intent.action.MAIN" />
+56-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:20:17-69
+56-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:20:25-66
+57
+58                <category android:name="android.intent.category.LAUNCHER" />
+58-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:21:17-77
+58-->C:\Users\hanne\Desktop\noodrop-firebase-mvp_5\app\src\main\AndroidManifest.xml:21:27-74
+59            </intent-filter>
+60        </activity>
+61        <activity
+61-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:8:9-12:58
+62            android:name="com.stripe.android.paymentsheet.PaymentSheetActivity"
+62-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:9:13-80
+63            android:exported="false"
+63-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:10:13-37
+64            android:theme="@style/StripePaymentSheetDefaultTheme"
+64-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:11:13-66
+65            android:windowSoftInputMode="adjustResize" />
+65-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:12:13-55
+66        <activity
+66-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:13:9-17:58
+67            android:name="com.stripe.android.paymentsheet.PaymentOptionsActivity"
+67-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:14:13-82
+68            android:exported="false"
+68-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:15:13-37
+69            android:theme="@style/StripePaymentSheetDefaultTheme"
+69-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:16:13-66
+70            android:windowSoftInputMode="adjustResize" />
+70-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:17:13-55
+71        <activity
+71-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:18:9-21:69
+72            android:name="com.stripe.android.paymentsheet.addresselement.AddressElementActivity"
+72-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:19:13-97
+73            android:exported="false"
+73-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:20:13-37
+74            android:theme="@style/StripePaymentSheetDefaultTheme" />
+74-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:21:13-66
+75        <activity
+75-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:22:9-25:69
+76            android:name="com.stripe.android.paymentsheet.paymentdatacollection.polling.PollingActivity"
+76-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:23:13-105
+77            android:exported="false"
+77-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:24:13-37
+78            android:theme="@style/StripePaymentSheetDefaultTheme" />
+78-->[com.stripe:paymentsheet:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f58c335d68c4a624dc9a15f5d7ce5c79\transformed\paymentsheet-20.25.0\AndroidManifest.xml:25:13-66
+79        <activity
+79-->[com.stripe:link:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\832f95d25ea3275720103e6dc76ae8a5\transformed\link-20.25.0\AndroidManifest.xml:8:9-13:58
+80            android:name="com.stripe.android.link.LinkActivity"
+80-->[com.stripe:link:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\832f95d25ea3275720103e6dc76ae8a5\transformed\link-20.25.0\AndroidManifest.xml:9:13-64
+81            android:exported="false"
+81-->[com.stripe:link:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\832f95d25ea3275720103e6dc76ae8a5\transformed\link-20.25.0\AndroidManifest.xml:10:13-37
+82            android:label="@string/stripe_link"
+82-->[com.stripe:link:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\832f95d25ea3275720103e6dc76ae8a5\transformed\link-20.25.0\AndroidManifest.xml:11:13-48
+83            android:theme="@style/StripeLinkBaseTheme"
+83-->[com.stripe:link:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\832f95d25ea3275720103e6dc76ae8a5\transformed\link-20.25.0\AndroidManifest.xml:12:13-55
+84            android:windowSoftInputMode="adjustResize" />
+84-->[com.stripe:link:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\832f95d25ea3275720103e6dc76ae8a5\transformed\link-20.25.0\AndroidManifest.xml:13:13-55
+85        <activity
+85-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:21:9-64:20
+86            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetRedirectActivity"
+86-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:22:13-109
+87            android:exported="true" >
+87-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:23:13-36
+88            <intent-filter>
+88-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:24:13-63:29
+89                <action android:name="android.intent.action.VIEW" />
+89-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:13-65
+89-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:21-62
+90
+91                <category android:name="android.intent.category.DEFAULT" />
+91-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:17-76
+91-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:27-73
+92                <category android:name="android.intent.category.BROWSABLE" />
+92-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:17-78
+92-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:27-75
+93
+94                <!-- Returning from app2app: return_url is triggered to reopen web AuthFlow and poll accounts. -->
+95                <data
+95-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+96                    android:host="link-accounts"
+97                    android:pathPrefix="/com.noodrop.app/authentication_return"
+98                    android:scheme="stripe-auth" />
+98-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+99
+100                <!-- Returning from app2app: return_url is triggered to reopen native AuthFlow and poll accounts. -->
+101                <data
+101-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+102                    android:host="link-native-accounts"
+103                    android:pathPrefix="/com.noodrop.app/authentication_return"
+104                    android:scheme="stripe-auth" />
+104-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+105
+106                <!-- End of web AuthFlow success and cancel URIs that begin with "stripe-auth://link-accounts/{app-id}/...” -->
+107                <data
+107-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+108                    android:host="link-accounts"
+109                    android:path="/com.noodrop.app/success"
+110                    android:scheme="stripe-auth" />
+110-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+111                <data
+111-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+112                    android:host="link-accounts"
+113                    android:path="/com.noodrop.app/cancel"
+114                    android:scheme="stripe-auth" />
+114-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+115
+116                <!-- Opening app2app: Web flow triggers stripe-auth://native-redirect/{app-id}/http://web-that-redirects-to-native -->
+117                <data
+117-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+118                    android:host="native-redirect"
+119                    android:pathPrefix="/com.noodrop.app"
+120                    android:scheme="stripe-auth" />
+120-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+121
+122                <!-- Accepts success/cancel/fail URIs that begin with "stripe://auth-redirect” -->
+123                <data
+123-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+124                    android:host="auth-redirect"
+125                    android:pathPrefix="/com.noodrop.app"
+126                    android:scheme="stripe" />
+126-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+127            </intent-filter>
+128        </activity>
+129        <activity
+129-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:65:9-68:57
+130            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetActivity"
+130-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:66:13-101
+131            android:exported="false"
+131-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:67:13-37
+132            android:theme="@style/StripeDefaultTheme" />
+132-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:68:13-54
+133        <activity
+133-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:69:9-73:58
+134            android:name="com.stripe.android.financialconnections.ui.FinancialConnectionsSheetNativeActivity"
+134-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:70:13-110
+135            android:exported="false"
+135-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:71:13-37
+136            android:theme="@style/StripeDefaultTheme"
+136-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:72:13-54
+137            android:windowSoftInputMode="adjustResize" />
+137-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:73:13-55
+138
+139        <provider
+139-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:75:9-79:43
+140            android:name="com.stripe.android.financialconnections.appinitializer.FinancialConnectionsInitializer"
+140-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:76:13-114
+141            android:authorities="com.noodrop.app.financialconnections-init"
+141-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:77:13-77
+142            android:exported="false"
+142-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:78:13-37
+143            android:multiprocess="true" />
+143-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:79:13-40
+144
+145        <activity
+145-->[com.stripe:payments-ui-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d8ec69758ffcd03a1724f8047c006eee\transformed\payments-ui-core-20.25.0\AndroidManifest.xml:8:9-11:69
+146            android:name="com.stripe.android.ui.core.cardscan.CardScanActivity"
+146-->[com.stripe:payments-ui-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d8ec69758ffcd03a1724f8047c006eee\transformed\payments-ui-core-20.25.0\AndroidManifest.xml:9:13-80
+147            android:exported="false"
+147-->[com.stripe:payments-ui-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d8ec69758ffcd03a1724f8047c006eee\transformed\payments-ui-core-20.25.0\AndroidManifest.xml:10:13-37
+148            android:theme="@style/StripePaymentSheetDefaultTheme" />
+148-->[com.stripe:payments-ui-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d8ec69758ffcd03a1724f8047c006eee\transformed\payments-ui-core-20.25.0\AndroidManifest.xml:11:13-66
+149        <activity
+149-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:15:9-18:57
+150            android:name="com.stripe.android.view.AddPaymentMethodActivity"
+150-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:16:13-76
+151            android:exported="false"
+151-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:17:13-37
+152            android:theme="@style/StripeDefaultTheme" />
+152-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:18:13-54
+153        <activity
+153-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:19:9-22:57
+154            android:name="com.stripe.android.view.PaymentMethodsActivity"
+154-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:20:13-74
+155            android:exported="false"
+155-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:21:13-37
+156            android:theme="@style/StripeDefaultTheme" />
+156-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:22:13-54
+157        <activity
+157-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:23:9-26:57
+158            android:name="com.stripe.android.view.PaymentFlowActivity"
+158-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:24:13-71
+159            android:exported="false"
+159-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:25:13-37
+160            android:theme="@style/StripeDefaultTheme" />
+160-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:26:13-54
+161        <activity
+161-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:27:9-31:58
+162            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
+162-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:28:13-78
+163            android:exported="false"
+163-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:29:13-37
+164            android:theme="@style/StripeDefaultTheme"
+164-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:30:13-54
+165            android:windowSoftInputMode="adjustResize" />
+165-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:31:13-55
+166        <activity
+166-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:32:9-35:61
+167            android:name="com.stripe.android.view.PaymentRelayActivity"
+167-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:33:13-72
+168            android:exported="false"
+168-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:34:13-37
+169            android:theme="@style/StripeTransparentTheme" />
+169-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:35:13-58
+170        <!--
+171        Set android:launchMode="singleTop" so that the StripeBrowserLauncherActivity instance that
+172        launched the browser Activity will also handle the return URL deep link.
+173        -->
+174        <activity
+174-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:41:9-45:61
+175            android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
+175-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:42:13-85
+176            android:exported="false"
+176-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:43:13-37
+177            android:launchMode="singleTask"
+177-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:44:13-44
+178            android:theme="@style/StripeTransparentTheme" />
+178-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:45:13-58
+179        <activity
+179-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:46:9-63:20
+180            android:name="com.stripe.android.payments.StripeBrowserProxyReturnActivity"
+180-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:47:13-88
+181            android:exported="true"
+181-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:48:13-36
+182            android:launchMode="singleTask"
+182-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:49:13-44
+183            android:theme="@style/StripeTransparentTheme" >
+183-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:50:13-58
+184            <intent-filter>
+184-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:51:13-62:29
+185                <action android:name="android.intent.action.VIEW" />
+185-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:13-65
+185-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:21-62
+186
+187                <category android:name="android.intent.category.DEFAULT" />
+187-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:17-76
+187-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:27-73
+188                <category android:name="android.intent.category.BROWSABLE" />
+188-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:17-78
+188-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:27-75
+189
+190                <!-- Must match `DefaultReturnUrl#value`. -->
+191                <data
+191-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+192                    android:host="payment_return_url"
+193                    android:path="/com.noodrop.app"
+194                    android:scheme="stripesdk" />
+194-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+195            </intent-filter>
+196        </activity>
+197        <activity
+197-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:64:9-67:57
+198            android:name="com.stripe.android.payments.core.authentication.threeds2.Stripe3ds2TransactionActivity"
+198-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:65:13-114
+199            android:exported="false"
+199-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:66:13-37
+200            android:theme="@style/StripeDefaultTheme" />
+200-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:67:13-54
+201        <activity
+201-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:68:9-71:66
+202            android:name="com.stripe.android.googlepaylauncher.StripeGooglePayActivity"
+202-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:69:13-88
+203            android:exported="false"
+203-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:70:13-37
+204            android:theme="@style/StripeGooglePayDefaultTheme" />
+204-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:71:13-63
+205        <activity
+205-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:72:9-75:66
+206            android:name="com.stripe.android.googlepaylauncher.GooglePayLauncherActivity"
+206-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:73:13-90
+207            android:exported="false"
+207-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:74:13-37
+208            android:theme="@style/StripeGooglePayDefaultTheme" />
+208-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:75:13-63
+209        <activity
+209-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:76:9-79:66
+210            android:name="com.stripe.android.googlepaylauncher.GooglePayPaymentMethodLauncherActivity"
+210-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:77:13-103
+211            android:exported="false"
+211-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:78:13-37
+212            android:theme="@style/StripeGooglePayDefaultTheme" />
+212-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:79:13-63
+213        <activity
+213-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:80:9-83:68
+214            android:name="com.stripe.android.payments.paymentlauncher.PaymentLauncherConfirmationActivity"
+214-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:81:13-107
+215            android:exported="false"
+215-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:82:13-37
+216            android:theme="@style/StripePayLauncherDefaultTheme" />
+216-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:83:13-65
+217        <activity
+217-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:84:9-87:61
+218            android:name="com.stripe.android.payments.bankaccount.ui.CollectBankAccountActivity"
+218-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:85:13-97
+219            android:exported="false"
+219-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:86:13-37
+220            android:theme="@style/StripeTransparentTheme" />
+220-->[com.stripe:payments-core:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\d74b20e4fc1c0ffb6c3a20981dc1d78d\transformed\payments-core-20.25.0\AndroidManifest.xml:87:13-58
+221        <activity
+221-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f2ac8e0df3c37daeaa33c31e5020cbb5\transformed\stripe-3ds2-android-6.1.7\AndroidManifest.xml:8:9-11:54
+222            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
+222-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f2ac8e0df3c37daeaa33c31e5020cbb5\transformed\stripe-3ds2-android-6.1.7\AndroidManifest.xml:9:13-81
+223            android:exported="false"
+223-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f2ac8e0df3c37daeaa33c31e5020cbb5\transformed\stripe-3ds2-android-6.1.7\AndroidManifest.xml:10:13-37
+224            android:theme="@style/Stripe3DS2Theme" />
+224-->[com.stripe:stripe-3ds2-android:6.1.7] C:\Users\hanne\.gradle\caches\8.11.1\transforms\f2ac8e0df3c37daeaa33c31e5020cbb5\transformed\stripe-3ds2-android-6.1.7\AndroidManifest.xml:11:13-51
+225
+226        <service
+226-->[com.google.firebase:firebase-auth-ktx:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2c096fb61d723fc086b5da03063d0064\transformed\firebase-auth-ktx-23.0.0\AndroidManifest.xml:8:9-14:19
+227            android:name="com.google.firebase.components.ComponentDiscoveryService"
+227-->[com.google.firebase:firebase-auth-ktx:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2c096fb61d723fc086b5da03063d0064\transformed\firebase-auth-ktx-23.0.0\AndroidManifest.xml:9:13-84
+228            android:directBootAware="true"
+228-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:32:13-43
+229            android:exported="false" >
+229-->[com.google.firebase:firebase-auth-ktx:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2c096fb61d723fc086b5da03063d0064\transformed\firebase-auth-ktx-23.0.0\AndroidManifest.xml:10:13-37
+230            <meta-data
+230-->[com.google.firebase:firebase-auth-ktx:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2c096fb61d723fc086b5da03063d0064\transformed\firebase-auth-ktx-23.0.0\AndroidManifest.xml:11:13-13:85
+231                android:name="com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthLegacyRegistrar"
+231-->[com.google.firebase:firebase-auth-ktx:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2c096fb61d723fc086b5da03063d0064\transformed\firebase-auth-ktx-23.0.0\AndroidManifest.xml:12:17-119
+232                android:value="com.google.firebase.components.ComponentRegistrar" />
+232-->[com.google.firebase:firebase-auth-ktx:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2c096fb61d723fc086b5da03063d0064\transformed\firebase-auth-ktx-23.0.0\AndroidManifest.xml:13:17-82
+233            <meta-data
+233-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:69:13-71:85
+234                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+234-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:70:17-109
+235                android:value="com.google.firebase.components.ComponentRegistrar" />
+235-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:71:17-82
+236            <meta-data
+236-->[com.google.firebase:firebase-firestore-ktx:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ef3818943a91d0f061078afbef7e6a69\transformed\firebase-firestore-ktx-25.1.0\AndroidManifest.xml:12:13-14:85
+237                android:name="com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreLegacyRegistrar"
+237-->[com.google.firebase:firebase-firestore-ktx:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ef3818943a91d0f061078afbef7e6a69\transformed\firebase-firestore-ktx-25.1.0\AndroidManifest.xml:13:17-129
+238                android:value="com.google.firebase.components.ComponentRegistrar" />
+238-->[com.google.firebase:firebase-firestore-ktx:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ef3818943a91d0f061078afbef7e6a69\transformed\firebase-firestore-ktx-25.1.0\AndroidManifest.xml:14:17-82
+239            <meta-data
+239-->[com.google.firebase:firebase-firestore:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\c2c3601e241d1cc0a9b374244785fa0e\transformed\firebase-firestore-25.1.0\AndroidManifest.xml:17:13-19:85
+240                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+240-->[com.google.firebase:firebase-firestore:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\c2c3601e241d1cc0a9b374244785fa0e\transformed\firebase-firestore-25.1.0\AndroidManifest.xml:18:17-122
+241                android:value="com.google.firebase.components.ComponentRegistrar" />
+241-->[com.google.firebase:firebase-firestore:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\c2c3601e241d1cc0a9b374244785fa0e\transformed\firebase-firestore-25.1.0\AndroidManifest.xml:19:17-82
+242            <meta-data
+242-->[com.google.firebase:firebase-firestore:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\c2c3601e241d1cc0a9b374244785fa0e\transformed\firebase-firestore-25.1.0\AndroidManifest.xml:20:13-22:85
+243                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+243-->[com.google.firebase:firebase-firestore:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\c2c3601e241d1cc0a9b374244785fa0e\transformed\firebase-firestore-25.1.0\AndroidManifest.xml:21:17-111
+244                android:value="com.google.firebase.components.ComponentRegistrar" />
+244-->[com.google.firebase:firebase-firestore:25.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\c2c3601e241d1cc0a9b374244785fa0e\transformed\firebase-firestore-25.1.0\AndroidManifest.xml:22:17-82
+245            <meta-data
+245-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\cfc048dbc9d27a4983748e435f856d7e\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:12:13-14:85
+246                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+246-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\cfc048dbc9d27a4983748e435f856d7e\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:13:17-116
+247                android:value="com.google.firebase.components.ComponentRegistrar" />
+247-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\cfc048dbc9d27a4983748e435f856d7e\transformed\firebase-common-ktx-21.0.0\AndroidManifest.xml:14:17-82
+248            <meta-data
+248-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:35:13-37:85
+249                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+249-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:36:17-109
+250                android:value="com.google.firebase.components.ComponentRegistrar" />
+250-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:37:17-82
+251        </service>
+252
+253        <activity
+253-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:29:9-46:20
+254            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+254-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:30:13-80
+255            android:excludeFromRecents="true"
+255-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:31:13-46
+256            android:exported="true"
+256-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:32:13-36
+257            android:launchMode="singleTask"
+257-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:33:13-44
+258            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+258-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:34:13-72
+259            <intent-filter>
+259-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:35:13-45:29
+260                <action android:name="android.intent.action.VIEW" />
+260-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:13-65
+260-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:21-62
+261
+262                <category android:name="android.intent.category.DEFAULT" />
+262-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:17-76
+262-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:27-73
+263                <category android:name="android.intent.category.BROWSABLE" />
+263-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:17-78
+263-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:27-75
+264
+265                <data
+265-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+266                    android:host="firebase.auth"
+267                    android:path="/"
+268                    android:scheme="genericidp" />
+268-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+269            </intent-filter>
+270        </activity>
+271        <activity
+271-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:47:9-64:20
+272            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+272-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:48:13-79
+273            android:excludeFromRecents="true"
+273-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:49:13-46
+274            android:exported="true"
+274-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:50:13-36
+275            android:launchMode="singleTask"
+275-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:51:13-44
+276            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+276-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:52:13-72
+277            <intent-filter>
+277-->[com.google.firebase:firebase-auth:23.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\479e1b3402489a92549598d23d3b0910\transformed\firebase-auth-23.0.0\AndroidManifest.xml:53:13-63:29
+278                <action android:name="android.intent.action.VIEW" />
+278-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:13-65
+278-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:14:21-62
+279
+280                <category android:name="android.intent.category.DEFAULT" />
+280-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:17-76
+280-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:27:27-73
+281                <category android:name="android.intent.category.BROWSABLE" />
+281-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:17-78
+281-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:28:27-75
+282
+283                <data
+283-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:13-43
+284                    android:host="firebase.auth"
+285                    android:path="/"
+286                    android:scheme="recaptcha" />
+286-->[com.stripe:financial-connections:20.25.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\dc2b3df6ae3179078793abe5d3314b79\transformed\financial-connections-20.25.0\AndroidManifest.xml:16:19-40
+287            </intent-filter>
+288        </activity>
+289
+290        <service
+290-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:24:9-32:19
+291            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+291-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:25:13-94
+292            android:enabled="true"
+292-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:26:13-35
+293            android:exported="false" >
+293-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:27:13-37
+294            <meta-data
+294-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:29:13-31:104
+295                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+295-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:30:17-76
+296                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+296-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:31:17-101
+297        </service>
+298
+299        <activity
+299-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:34:9-41:20
+300            android:name="androidx.credentials.playservices.HiddenActivity"
+300-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:35:13-76
+301            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+301-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:36:13-87
+302            android:enabled="true"
+302-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:37:13-35
+303            android:exported="false"
+303-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:38:13-37
+304            android:fitsSystemWindows="true"
+304-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:39:13-45
+305            android:theme="@style/Theme.Hidden" >
+305-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] C:\Users\hanne\.gradle\caches\8.11.1\transforms\2fe9af21c3e20a409e9185b03276d66d\transformed\credentials-play-services-auth-1.2.0-rc01\AndroidManifest.xml:40:13-48
+306        </activity>
+307        <activity
+307-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:23:9-27:75
+308            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+308-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:24:13-93
+309            android:excludeFromRecents="true"
+309-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:25:13-46
+310            android:exported="false"
+310-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:26:13-37
+311            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+311-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:27:13-72
+312        <!--
+313            Service handling Google Sign-In user revocation. For apps that do not integrate with
+314            Google Sign-In, this service will never be started.
+315        -->
+316        <service
+316-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:33:9-37:51
+317            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+317-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:34:13-89
+318            android:exported="true"
+318-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:35:13-36
+319            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+319-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:36:13-107
+320            android:visibleToInstantApps="true" /> <!-- Needs to be explicitly declared on P+ -->
+320-->[com.google.android.gms:play-services-auth:20.7.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\fa6cad3fc2fef992baf58545c1a0e68d\transformed\play-services-auth-20.7.0\AndroidManifest.xml:37:13-48
+321        <uses-library
+321-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:39:9-41:40
+322            android:name="org.apache.http.legacy"
+322-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:40:13-50
+323            android:required="false" />
+323-->[com.google.android.gms:play-services-maps:18.0.2] C:\Users\hanne\.gradle\caches\8.11.1\transforms\45f3a89293fc20e41cdddd04d8382811\transformed\play-services-maps-18.0.2\AndroidManifest.xml:41:13-37
+324
+325        <activity
+325-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\92538a1b52d7a91ace10565204f3f3fb\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+326            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+326-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\92538a1b52d7a91ace10565204f3f3fb\transformed\play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+327            android:exported="false"
+327-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\92538a1b52d7a91ace10565204f3f3fb\transformed\play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+328            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+328-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\92538a1b52d7a91ace10565204f3f3fb\transformed\play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+329
+330        <provider
+330-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:23:9-28:39
+331            android:name="com.google.firebase.provider.FirebaseInitProvider"
+331-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:24:13-77
+332            android:authorities="com.noodrop.app.firebaseinitprovider"
+332-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:25:13-72
+333            android:directBootAware="true"
+333-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:26:13-43
+334            android:exported="false"
+334-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:27:13-37
+335            android:initOrder="100" />
+335-->[com.google.firebase:firebase-common:21.0.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b58f34f154dfa537a2f2c7c1150166c0\transformed\firebase-common-21.0.0\AndroidManifest.xml:28:13-36
+336
+337        <activity
+337-->[androidx.compose.ui:ui-tooling-android:1.7.3] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ee1c8e5e9f7e8bcde788f60254053564\transformed\ui-tooling-release\AndroidManifest.xml:23:9-25:39
+338            android:name="androidx.compose.ui.tooling.PreviewActivity"
+338-->[androidx.compose.ui:ui-tooling-android:1.7.3] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ee1c8e5e9f7e8bcde788f60254053564\transformed\ui-tooling-release\AndroidManifest.xml:24:13-71
+339            android:exported="true" />
+339-->[androidx.compose.ui:ui-tooling-android:1.7.3] C:\Users\hanne\.gradle\caches\8.11.1\transforms\ee1c8e5e9f7e8bcde788f60254053564\transformed\ui-tooling-release\AndroidManifest.xml:25:13-36
+340
+341        <provider
+341-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+342            android:name="androidx.startup.InitializationProvider"
+342-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+343            android:authorities="com.noodrop.app.androidx-startup"
+343-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+344            android:exported="false" >
+344-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+345            <meta-data
+345-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+346                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+346-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+347                android:value="androidx.startup" />
+347-->[androidx.emoji2:emoji2:1.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b7518ddc6d6db92da755b8a53d573674\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+348            <meta-data
+348-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\hanne\.gradle\caches\8.11.1\transforms\0040111d39a552e6dfdb35604a199aa2\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:29:13-31:52
+349                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+349-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\hanne\.gradle\caches\8.11.1\transforms\0040111d39a552e6dfdb35604a199aa2\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:30:17-78
+350                android:value="androidx.startup" />
+350-->[androidx.lifecycle:lifecycle-process:2.8.6] C:\Users\hanne\.gradle\caches\8.11.1\transforms\0040111d39a552e6dfdb35604a199aa2\transformed\lifecycle-process-2.8.6\AndroidManifest.xml:31:17-49
+351            <meta-data
+351-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+352                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+352-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+353                android:value="androidx.startup" />
+353-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+354        </provider>
+355
+356        <meta-data
+356-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\56e38f4b83fbb51340eae54c63ad2d14\transformed\play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+357            android:name="com.google.android.gms.version"
+357-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\56e38f4b83fbb51340eae54c63ad2d14\transformed\play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+358            android:value="@integer/google_play_services_version" />
+358-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\56e38f4b83fbb51340eae54c63ad2d14\transformed\play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+359
+360        <receiver
+360-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+361            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+361-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+362            android:directBootAware="false"
+362-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+363            android:enabled="true"
+363-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+364            android:exported="true"
+364-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+365            android:permission="android.permission.DUMP" >
+365-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+366            <intent-filter>
+366-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+367                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+367-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+367-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+368            </intent-filter>
+369            <intent-filter>
+369-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+370                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+370-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+370-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+371            </intent-filter>
+372            <intent-filter>
+372-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+373                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+373-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+373-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+374            </intent-filter>
+375            <intent-filter>
+375-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+376                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+376-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+376-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\hanne\.gradle\caches\8.11.1\transforms\b87f2383a11255cad494c47973c3684a\transformed\profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+377            </intent-filter>
+378        </receiver>
+379
+380        <meta-data
+380-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\34b736fe3c5787c52cafeff6acbbc39d\transformed\instantapps-1.1.0\AndroidManifest.xml:10:9-12:33
+381            android:name="aia-compat-api-min-version"
+381-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\34b736fe3c5787c52cafeff6acbbc39d\transformed\instantapps-1.1.0\AndroidManifest.xml:11:13-54
+382            android:value="1" />
+382-->[com.google.android.instantapps:instantapps:1.1.0] C:\Users\hanne\.gradle\caches\8.11.1\transforms\34b736fe3c5787c52cafeff6acbbc39d\transformed\instantapps-1.1.0\AndroidManifest.xml:12:13-30
+383    </application>
+384
+385</manifest>
