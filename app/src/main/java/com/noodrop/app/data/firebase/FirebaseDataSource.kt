@@ -228,13 +228,15 @@ class FirebaseDataSource @Inject constructor(
         } catch (e: Exception) { null }
     }
 
-    suspend fun purchaseAppProduct(appProduct: AppProduct): PurchaseResult {
+    suspend fun purchaseAppProduct(appProduct: AppProduct, uid: String = ""): PurchaseResult {
         return try {
-            val paymentUrl = appProduct.downloadURL.takeIf { it.isNotBlank() }
+            val baseUrl = appProduct.downloadURL.takeIf { it.isNotBlank() }
                 ?: return PurchaseResult(
                     false,
-                    "Kein Zahlungslink konfiguriert. Bitte trage eine Stripe Payment Link URL im Feld 'downloadURL' in Firestore ein (products-app/${appProduct.id})."
+                    "Kein Zahlungslink konfiguriert. Bitte trage eine Stripe Payment Link URL im Feld 'downloadUrl' in Firestore ein (products-app/${appProduct.id})."
                 )
+            // Append Firebase UID as client_reference_id so the Webhook can identify the user
+            val paymentUrl = if (uid.isNotBlank()) "$baseUrl?client_reference_id=$uid" else baseUrl
             PurchaseResult(
                 success       = true,
                 transactionId = "pending_${appProduct.id}_${System.currentTimeMillis()}",
@@ -347,7 +349,8 @@ private fun com.google.firebase.firestore.DocumentSnapshot.toAppProduct(): AppPr
             description    = getString("description") ?: "",
             price          = (get("price") as? Number)?.toDouble() ?: 2.99,
             priceformatted = getString("priceFormatted") ?: getString("priceformatted") ?: "€2.99",
-            downloadURL    = getString("downloadURL") ?: getString("downloadurl") ?: "",
+            // Firestore field is "downloadUrl" (capital U, lowercase r) — check all variants
+            downloadURL    = getString("downloadUrl") ?: getString("downloadURL") ?: getString("downloadurl") ?: "",
             isActive       = getBoolean("isActive") ?: getBoolean("isactive") ?: true,
         )
     } catch (e: Exception) { null }

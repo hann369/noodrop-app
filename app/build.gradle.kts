@@ -72,6 +72,7 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.functions)
 
     // Stripe SDK
     implementation("com.stripe:stripe-android:20.25.0")
@@ -79,6 +80,6 @@ dependencies {
     // DataStore
     implementation(libs.datastore.prefs)
 
-    // Splash Screen  ← FIX: war vorhanden in libs aber fehlte hier
+    // Splash Screen
     implementation(libs.splash)
 }

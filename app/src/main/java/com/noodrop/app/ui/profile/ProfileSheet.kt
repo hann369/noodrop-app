@@ -86,6 +86,7 @@ class ProfileViewModel @Inject constructor(
 @Composable
 fun ProfileSheet(
     onClose: () -> Unit,
+    onOpenSubscription: () -> Unit = {},
     vm: ProfileViewModel = hiltViewModel(),
 ) {
     val s by vm.state.collectAsState()
@@ -207,6 +208,37 @@ fun ProfileSheet(
                     color    = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(start = 4.dp),
                 )
+
+                // ── Subscription ─────────────────────────────────────────────
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                        .clickable { onOpenSubscription() }
+                        .padding(horizontal = 16.dp, vertical = 14.dp),
+                ) {
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment     = Alignment.CenterVertically,
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalAlignment     = Alignment.CenterVertically,
+                        ) {
+                            Box(
+                                Modifier.size(32.dp).clip(RoundedCornerShape(8.dp))
+                                    .background(NdOrange.copy(alpha = 0.12f)),
+                                contentAlignment = Alignment.Center,
+                            ) { Text("✦", fontSize = 16.sp, color = NdOrange) }
+                            Text("Premium", style = MaterialTheme.typography.bodyMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
+                        }
+                        Text("→", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                }
+
+                Spacer(Modifier.height(4.dp))
 
                 // Sign out
                 Box(

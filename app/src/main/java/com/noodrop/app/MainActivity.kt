@@ -39,6 +39,7 @@ import com.noodrop.app.ui.stack.StackScreen
 import com.noodrop.app.ui.theme.*
 import com.noodrop.app.ui.tracker.TrackerScreen
 import com.noodrop.app.ui.profile.ProfileSheet
+import com.noodrop.app.ui.subscription.SubscriptionSheet
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -121,10 +122,18 @@ fun MainApp(onToggleDark: () -> Unit, onSignOut: () -> Unit, isDark: Boolean) {
     val navController = rememberNavController()
     val currentEntry  by navController.currentBackStackEntryAsState()
     val currentRoute  = currentEntry?.destination?.route
-    var showProfile   by remember { mutableStateOf(false) }
+    var showProfile      by remember { mutableStateOf(false) }
+    var showSubscription by remember { mutableStateOf(false) }
 
     if (showProfile) {
-        ProfileSheet(onClose = { showProfile = false })
+        ProfileSheet(
+            onClose             = { showProfile = false },
+            onOpenSubscription  = { showProfile = false; showSubscription = true },
+        )
+    }
+
+    if (showSubscription) {
+        SubscriptionSheet(onClose = { showSubscription = false })
     }
 
     Scaffold(

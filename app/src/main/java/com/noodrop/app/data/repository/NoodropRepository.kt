@@ -190,7 +190,7 @@ class NoodropRepository @Inject constructor(
     // Single protocol purchase (€2.99)
     // Purchases via products-app collection.
     // productDocId = the Firestore document ID (e.g. "premium-subscription", "focus", "longevity")
-    suspend fun purchaseAppProduct(productDocId: String): PurchaseResult {
+    suspend fun purchaseAppProduct(productDocId: String, uid: String = ""): PurchaseResult {
         return try {
             val appProduct = fb.getAppProductForProtocol(productDocId)
                 ?: return PurchaseResult(
@@ -198,7 +198,7 @@ class NoodropRepository @Inject constructor(
                     "Produkt '$productDocId' nicht in 'products-app' gefunden. Prüfe die Dokument-ID in Firestore."
                 )
             if (!appProduct.isActive) return PurchaseResult(false, "Dieses Produkt ist momentan nicht erhältlich.")
-            fb.purchaseAppProduct(appProduct)
+            fb.purchaseAppProduct(appProduct, uid)
         } catch (e: Exception) {
             PurchaseResult(false, e.message ?: "Purchase failed")
         }

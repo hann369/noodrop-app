@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import com.noodrop.app.data.model.*
 import com.noodrop.app.data.repository.NoodropRepository
 import com.noodrop.app.ui.common.*
@@ -38,7 +39,7 @@ import javax.inject.Inject
 // ── State ─────────────────────────────────────────────────────────────────────
 data class SubscriptionState(
     val subscription: SubscriptionStatus = SubscriptionStatus(),
-    val premiumProduct: AppProduct?      = null,  // from products-app
+    val premiumProduct: AppProduct?      = null,
     val isLoading: Boolean               = false,
     val purchaseResult: PurchaseResult?  = null,
     val errorMessage: String?            = null,
@@ -48,6 +49,7 @@ data class SubscriptionState(
 @HiltViewModel
 class SubscriptionViewModel @Inject constructor(
     private val repo: NoodropRepository,
+    private val auth: FirebaseAuth,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SubscriptionState())
@@ -60,7 +62,6 @@ class SubscriptionViewModel @Inject constructor(
                     repo.subscriptionFlow(),
                     repo.appProductsFlow(),
                 ) { subscription, appProducts ->
-                    // Find premium-subscription by exact doc ID first, then fallback
                     val premiumProduct = appProducts.find { p -> p.id == "premium-subscription" }
                         ?: appProducts.find { p ->
                             p.id.contains("premium", ignoreCase = true) ||
@@ -79,12 +80,12 @@ class SubscriptionViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, errorMessage = null, purchaseResult = null) }
             try {
-                val state = _state.value
-                // Use the Stripe payment link from the premiumProduct if available
-                // Otherwise fall back to the products collection
-                // Always use the products-app document ID directly
-                val productId = state.premiumProduct?.id ?: "premium-subscription"
-                val result = repo.purchaseAppProduct(productId)
+                val uid       = auth.currentUser?.uid ?: run {
+                    _state.update { it.copy(isLoading = false, purchaseResult = PurchaseResult(false, "Nicht eingeloggt")) }
+                    return@launch
+                }
+                val productId = _state.value.premiumProduct?.id ?: "premium-subscription"
+                val result    = repo.purchaseAppProduct(productId, uid)
                 _state.update { it.copy(isLoading = false, purchaseResult = result) }
             } catch (e: Exception) {
                 _state.update {
@@ -111,6 +112,20 @@ class SubscriptionViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    fun openCustomerPortal() {
+        // Stripe Customer Portal URL — set this in Stripe Dashboard → Settings → Billing → Customer portal
+        // Get your portal link: https://billing.stripe.com/p/login/...
+        val portalUrl = "https://billing.stripe.com/p/login/test_fZu5kD29i4hG2fS4Kdg7e00" // ← replace with your portal URL
+        _state.update {
+            it.copy(
+                purchaseResult = PurchaseResult(
+                    success     = true,
+                    downloadUrl = portalUrl,
+                )
+            )
         }
     }
 
@@ -275,9 +290,9 @@ fun SubscriptionSheet(
                             Column {
                                 Text("Premium", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                                 Text(
-                                    s.premiumProduct?.priceformatted?.takeIf { it.isNotBlank() } ?: "€9.99 / month",
-                                    style  = MaterialTheme.typography.headlineSmall,
-                                    color  = NdOrange,
+                                    s.premiumProduct?.priceformatted?.takeIf { it.isNotBlank() } ?: "€9,99 / month",
+                                    style      = MaterialTheme.typography.headlineSmall,
+                                    color      = NdOrange,
                                     fontWeight = FontWeight.Bold,
                                 )
                             }
@@ -294,16 +309,28 @@ fun SubscriptionSheet(
                         Spacer(Modifier.height(14.dp))
 
                         if (s.subscription.isActive && s.subscription.plan != SubscriptionPlan.FREE) {
-                            // Already subscribed
-                            Box(
-                                Modifier
-                                    .fillMaxWidth()
-                                    .clip(RoundedCornerShape(10.dp))
-                                    .background(MaterialTheme.colorScheme.surfaceVariant)
-                                    .padding(12.dp),
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Text("✓ You're subscribed", style = MaterialTheme.typography.labelLarge, color = NdGreen, fontWeight = FontWeight.SemiBold)
+                            // ── Already subscribed ────────────────────────────
+                            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                                Box(
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .clip(RoundedCornerShape(10.dp))
+                                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                                        .padding(12.dp),
+                                    contentAlignment = Alignment.Center,
+                                ) {
+                                    Text("✓ You're subscribed", style = MaterialTheme.typography.labelLarge, color = NdGreen, fontWeight = FontWeight.SemiBold)
+                                }
+                                // Manage Subscription Button → Stripe Customer Portal
+                                Button(
+                                    onClick  = { vm.openCustomerPortal() },
+                                    enabled  = !s.isLoading,
+                                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                                    shape    = RoundedCornerShape(12.dp),
+                                    colors   = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                                ) {
+                                    Text("Manage Subscription", style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurface)
+                                }
                             }
                         } else {
                             Button(
@@ -323,18 +350,15 @@ fun SubscriptionSheet(
                     }
                 }
 
-                // ── Cancel ────────────────────────────────────────────────────
+                // ── Cancel info text ──────────────────────────────────────────
                 if (s.subscription.isActive && s.subscription.plan != SubscriptionPlan.FREE) {
-                    TextButton(
-                        onClick  = { vm.cancelSubscription() },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Text(
-                            "Cancel Subscription",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        )
-                    }
+                    Text(
+                        "To cancel your subscription, use Manage Subscription above.",
+                        style     = MaterialTheme.typography.labelSmall,
+                        color     = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier  = Modifier.fillMaxWidth(),
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    )
                 }
 
                 // ── Feedback ──────────────────────────────────────────────────
@@ -365,7 +389,6 @@ fun SubscriptionSheet(
                     Text("⚠️ $it", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
                 }
 
-                // Footer
                 Text(
                     "Secure payments via Stripe · Cancel anytime",
                     style     = MaterialTheme.typography.labelSmall,
