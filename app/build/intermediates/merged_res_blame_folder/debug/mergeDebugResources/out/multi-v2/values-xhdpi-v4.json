@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-xhdpi-v4/values-xhdpi-v4.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-xhdpi-v4/values-xhdpi-v4.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\d74b20e4fc1c0ffb6c3a20981dc1d78d\\transformed\\payments-core-20.25.0\\res\\values-xhdpi-v4\\values-xhdpi-v4.xml",

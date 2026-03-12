@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-pt-rBR/values-pt-rBR.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-pt-rBR/values-pt-rBR.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\f58c335d68c4a624dc9a15f5d7ce5c79\\transformed\\paymentsheet-20.25.0\\res\\values-pt-rBR\\values-pt-rBR.xml",

@@ -1366,8 +1366,12 @@ int attr yearTodayStyle 0x7f030501
 int attr zOrderOnTop 0x7f030502
 int bool abc_action_bar_embed_tabs 0x7f040000
 int bool abc_config_actionMenuItemAllCaps 0x7f040001
+int bool enable_system_alarm_service_default 0x7f040004
+int bool enable_system_foreground_service_default 0x7f040005
+int bool enable_system_job_service_default 0x7f040006
 int bool mtrl_btn_textappearance_all_caps 0x7f040002
 int bool stripe_is_tablet 0x7f040003
+int bool workmanager_test_configuration 0x7f040007
 int color abc_background_cache_hint_selector_material_dark 0x7f050000
 int color abc_background_cache_hint_selector_material_light 0x7f050001
 int color abc_btn_colored_borderless_text_material 0x7f050002
@@ -4242,6 +4246,8 @@ int plurals stripe_success_pane_link_with_no_business_name 0x7f0f000b
 int plurals stripe_success_pane_networking_save_to_link_failed_no_business 0x7f0f000c
 int plurals stripe_success_pane_no_business_name 0x7f0f000d
 int raw firebase_common_keep 0x7f100000
+int raw sound_log 0x7f100001
+int raw sound_stack 0x7f100002
 int string abc_action_bar_home_description 0x7f110000
 int string abc_action_bar_up_description 0x7f110001
 int string abc_action_menu_overflow_description 0x7f110002

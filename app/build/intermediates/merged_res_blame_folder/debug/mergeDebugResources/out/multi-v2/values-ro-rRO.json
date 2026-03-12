@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-ro-rRO/values-ro-rRO.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-ro-rRO/values-ro-rRO.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\d8ec69758ffcd03a1724f8047c006eee\\transformed\\payments-ui-core-20.25.0\\res\\values-ro-rRO\\values-ro-rRO.xml",

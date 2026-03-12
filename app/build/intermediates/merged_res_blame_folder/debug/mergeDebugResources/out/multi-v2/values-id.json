@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-id/values-id.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-id/values-id.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\ac530133eda49caf141064d811c28dc4\\transformed\\play-services-wallet-19.2.0-beta01\\res\\values-id\\values.xml",

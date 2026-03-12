@@ -118,7 +118,7 @@ class SubscriptionViewModel @Inject constructor(
     fun openCustomerPortal() {
         // Stripe Customer Portal URL — set this in Stripe Dashboard → Settings → Billing → Customer portal
         // Get your portal link: https://billing.stripe.com/p/login/...
-        val portalUrl = "https://billing.stripe.com/p/login/test_fZu5kD29i4hG2fS4Kdg7e00" // ← replace with your portal URL
+        val portalUrl = "https://billing.stripe.com/p/login/14A8wR5687Ey9hmfny1B600" // ← replace with your portal URL
         _state.update {
             it.copy(
                 purchaseResult = PurchaseResult(

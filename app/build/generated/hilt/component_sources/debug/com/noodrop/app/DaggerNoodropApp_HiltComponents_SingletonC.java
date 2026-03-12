@@ -412,55 +412,55 @@ public final class DaggerNoodropApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_noodrop_app_ui_stack_StackViewModel = "com.noodrop.app.ui.stack.StackViewModel";
-
-      static String com_noodrop_app_ui_metrics_MetricsViewModel = "com.noodrop.app.ui.metrics.MetricsViewModel";
-
-      static String com_noodrop_app_ui_subscription_SubscriptionViewModel = "com.noodrop.app.ui.subscription.SubscriptionViewModel";
-
-      static String com_noodrop_app_RootViewModel = "com.noodrop.app.RootViewModel";
-
-      static String com_noodrop_app_ui_auth_AuthViewModel = "com.noodrop.app.ui.auth.AuthViewModel";
-
-      static String com_noodrop_app_ui_tracker_TrackerViewModel = "com.noodrop.app.ui.tracker.TrackerViewModel";
-
-      static String com_noodrop_app_ui_profile_ProfileViewModel = "com.noodrop.app.ui.profile.ProfileViewModel";
+      static String com_noodrop_app_ui_onboarding_OnboardingViewModel = "com.noodrop.app.ui.onboarding.OnboardingViewModel";
 
       static String com_noodrop_app_ui_library_LibraryViewModel = "com.noodrop.app.ui.library.LibraryViewModel";
 
-      static String com_noodrop_app_ui_onboarding_OnboardingViewModel = "com.noodrop.app.ui.onboarding.OnboardingViewModel";
+      static String com_noodrop_app_ui_profile_ProfileViewModel = "com.noodrop.app.ui.profile.ProfileViewModel";
+
+      static String com_noodrop_app_ui_auth_AuthViewModel = "com.noodrop.app.ui.auth.AuthViewModel";
+
+      static String com_noodrop_app_ui_metrics_MetricsViewModel = "com.noodrop.app.ui.metrics.MetricsViewModel";
 
       static String com_noodrop_app_ui_dashboard_DashboardViewModel = "com.noodrop.app.ui.dashboard.DashboardViewModel";
 
-      @KeepFieldType
-      StackViewModel com_noodrop_app_ui_stack_StackViewModel2;
+      static String com_noodrop_app_RootViewModel = "com.noodrop.app.RootViewModel";
 
-      @KeepFieldType
-      MetricsViewModel com_noodrop_app_ui_metrics_MetricsViewModel2;
+      static String com_noodrop_app_ui_stack_StackViewModel = "com.noodrop.app.ui.stack.StackViewModel";
 
-      @KeepFieldType
-      SubscriptionViewModel com_noodrop_app_ui_subscription_SubscriptionViewModel2;
+      static String com_noodrop_app_ui_tracker_TrackerViewModel = "com.noodrop.app.ui.tracker.TrackerViewModel";
 
-      @KeepFieldType
-      RootViewModel com_noodrop_app_RootViewModel2;
-
-      @KeepFieldType
-      AuthViewModel com_noodrop_app_ui_auth_AuthViewModel2;
-
-      @KeepFieldType
-      TrackerViewModel com_noodrop_app_ui_tracker_TrackerViewModel2;
-
-      @KeepFieldType
-      ProfileViewModel com_noodrop_app_ui_profile_ProfileViewModel2;
-
-      @KeepFieldType
-      LibraryViewModel com_noodrop_app_ui_library_LibraryViewModel2;
+      static String com_noodrop_app_ui_subscription_SubscriptionViewModel = "com.noodrop.app.ui.subscription.SubscriptionViewModel";
 
       @KeepFieldType
       OnboardingViewModel com_noodrop_app_ui_onboarding_OnboardingViewModel2;
 
       @KeepFieldType
+      LibraryViewModel com_noodrop_app_ui_library_LibraryViewModel2;
+
+      @KeepFieldType
+      ProfileViewModel com_noodrop_app_ui_profile_ProfileViewModel2;
+
+      @KeepFieldType
+      AuthViewModel com_noodrop_app_ui_auth_AuthViewModel2;
+
+      @KeepFieldType
+      MetricsViewModel com_noodrop_app_ui_metrics_MetricsViewModel2;
+
+      @KeepFieldType
       DashboardViewModel com_noodrop_app_ui_dashboard_DashboardViewModel2;
+
+      @KeepFieldType
+      RootViewModel com_noodrop_app_RootViewModel2;
+
+      @KeepFieldType
+      StackViewModel com_noodrop_app_ui_stack_StackViewModel2;
+
+      @KeepFieldType
+      TrackerViewModel com_noodrop_app_ui_tracker_TrackerViewModel2;
+
+      @KeepFieldType
+      SubscriptionViewModel com_noodrop_app_ui_subscription_SubscriptionViewModel2;
     }
   }
 
@@ -528,55 +528,55 @@ public final class DaggerNoodropApp_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
-      static String com_noodrop_app_ui_library_LibraryViewModel = "com.noodrop.app.ui.library.LibraryViewModel";
-
-      static String com_noodrop_app_ui_onboarding_OnboardingViewModel = "com.noodrop.app.ui.onboarding.OnboardingViewModel";
-
-      static String com_noodrop_app_ui_dashboard_DashboardViewModel = "com.noodrop.app.ui.dashboard.DashboardViewModel";
-
       static String com_noodrop_app_ui_metrics_MetricsViewModel = "com.noodrop.app.ui.metrics.MetricsViewModel";
-
-      static String com_noodrop_app_RootViewModel = "com.noodrop.app.RootViewModel";
-
-      static String com_noodrop_app_ui_auth_AuthViewModel = "com.noodrop.app.ui.auth.AuthViewModel";
-
-      static String com_noodrop_app_ui_tracker_TrackerViewModel = "com.noodrop.app.ui.tracker.TrackerViewModel";
 
       static String com_noodrop_app_ui_profile_ProfileViewModel = "com.noodrop.app.ui.profile.ProfileViewModel";
 
-      static String com_noodrop_app_ui_stack_StackViewModel = "com.noodrop.app.ui.stack.StackViewModel";
+      static String com_noodrop_app_RootViewModel = "com.noodrop.app.RootViewModel";
+
+      static String com_noodrop_app_ui_onboarding_OnboardingViewModel = "com.noodrop.app.ui.onboarding.OnboardingViewModel";
+
+      static String com_noodrop_app_ui_tracker_TrackerViewModel = "com.noodrop.app.ui.tracker.TrackerViewModel";
+
+      static String com_noodrop_app_ui_library_LibraryViewModel = "com.noodrop.app.ui.library.LibraryViewModel";
 
       static String com_noodrop_app_ui_subscription_SubscriptionViewModel = "com.noodrop.app.ui.subscription.SubscriptionViewModel";
 
-      @KeepFieldType
-      LibraryViewModel com_noodrop_app_ui_library_LibraryViewModel2;
+      static String com_noodrop_app_ui_auth_AuthViewModel = "com.noodrop.app.ui.auth.AuthViewModel";
 
-      @KeepFieldType
-      OnboardingViewModel com_noodrop_app_ui_onboarding_OnboardingViewModel2;
+      static String com_noodrop_app_ui_stack_StackViewModel = "com.noodrop.app.ui.stack.StackViewModel";
 
-      @KeepFieldType
-      DashboardViewModel com_noodrop_app_ui_dashboard_DashboardViewModel2;
+      static String com_noodrop_app_ui_dashboard_DashboardViewModel = "com.noodrop.app.ui.dashboard.DashboardViewModel";
 
       @KeepFieldType
       MetricsViewModel com_noodrop_app_ui_metrics_MetricsViewModel2;
 
       @KeepFieldType
+      ProfileViewModel com_noodrop_app_ui_profile_ProfileViewModel2;
+
+      @KeepFieldType
       RootViewModel com_noodrop_app_RootViewModel2;
 
       @KeepFieldType
-      AuthViewModel com_noodrop_app_ui_auth_AuthViewModel2;
+      OnboardingViewModel com_noodrop_app_ui_onboarding_OnboardingViewModel2;
 
       @KeepFieldType
       TrackerViewModel com_noodrop_app_ui_tracker_TrackerViewModel2;
 
       @KeepFieldType
-      ProfileViewModel com_noodrop_app_ui_profile_ProfileViewModel2;
+      LibraryViewModel com_noodrop_app_ui_library_LibraryViewModel2;
+
+      @KeepFieldType
+      SubscriptionViewModel com_noodrop_app_ui_subscription_SubscriptionViewModel2;
+
+      @KeepFieldType
+      AuthViewModel com_noodrop_app_ui_auth_AuthViewModel2;
 
       @KeepFieldType
       StackViewModel com_noodrop_app_ui_stack_StackViewModel2;
 
       @KeepFieldType
-      SubscriptionViewModel com_noodrop_app_ui_subscription_SubscriptionViewModel2;
+      DashboardViewModel com_noodrop_app_ui_dashboard_DashboardViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -736,7 +736,7 @@ public final class DaggerNoodropApp_HiltComponents_SingletonC {
     }
 
     @Override
-    public void injectNoodropApp(NoodropApp noodropApp) {
+    public void injectNoodropApp(NoodropApp arg0) {
     }
 
     @Override

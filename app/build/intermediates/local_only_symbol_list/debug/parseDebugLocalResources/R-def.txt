@@ -5,6 +5,8 @@ color nd_dark_bg
 color nd_orange
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw sound_log
+raw sound_stack
 string app_name
 string gcm_defaultSenderId
 string google_api_key

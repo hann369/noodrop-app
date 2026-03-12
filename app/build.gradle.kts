@@ -80,6 +80,9 @@ dependencies {
     // DataStore
     implementation(libs.datastore.prefs)
 
+    // WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
     // Splash Screen
     implementation(libs.splash)
 }

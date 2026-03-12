@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\fa6cad3fc2fef992baf58545c1a0e68d\\transformed\\play-services-auth-20.7.0\\res\\values-watch-v20\\values.xml",

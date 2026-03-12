@@ -1,5 +1,9 @@
 package com.noodrop.app.ui.profile
 
+import android.Manifest
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,6 +30,7 @@ import androidx.lifecycle.viewModelScope
 import com.noodrop.app.data.model.AuthState
 import com.noodrop.app.data.repository.NoodropRepository
 import com.noodrop.app.ui.theme.*
+import com.noodrop.app.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -89,7 +95,64 @@ fun ProfileSheet(
     onOpenSubscription: () -> Unit = {},
     vm: ProfileViewModel = hiltViewModel(),
 ) {
-    val s by vm.state.collectAsState()
+    val s       by vm.state.collectAsState()
+    val context = LocalContext.current
+
+    // ── Notification prefs ────────────────────────────────────────────────────
+    val prefs       = remember { context.getSharedPreferences(PREFS_NOTIF, android.content.Context.MODE_PRIVATE) }
+    var notifOn     by remember { mutableStateOf(prefs.getBoolean(KEY_NOTIF_ON, false)) }
+    var notifHour   by remember { mutableIntStateOf(prefs.getInt(KEY_NOTIF_HOUR, 9)) }
+    var notifMinute by remember { mutableIntStateOf(prefs.getInt(KEY_NOTIF_MIN, 0)) }
+    var showTimePicker by remember { mutableStateOf(false) }
+
+    // Android 13+ POST_NOTIFICATIONS permission
+    val permLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            notifOn = true
+            scheduleDailyReminder(context, notifHour, notifMinute)
+        }
+    }
+
+    fun toggleNotif(on: Boolean) {
+        if (on) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                permLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                notifOn = true
+                scheduleDailyReminder(context, notifHour, notifMinute)
+            }
+        } else {
+            notifOn = false
+            cancelDailyReminder(context)
+        }
+    }
+
+    // ── Time Picker Dialog ────────────────────────────────────────────────────
+    if (showTimePicker) {
+        val timeState = rememberTimePickerState(
+            initialHour   = notifHour,
+            initialMinute = notifMinute,
+            is24Hour      = true,
+        )
+        AlertDialog(
+            onDismissRequest = { showTimePicker = false },
+            title   = { Text("Reminder time") },
+            text    = { TimePicker(state = timeState) },
+            confirmButton = {
+                TextButton(onClick = {
+                    notifHour   = timeState.hour
+                    notifMinute = timeState.minute
+                    showTimePicker = false
+                    if (notifOn) scheduleDailyReminder(context, notifHour, notifMinute)
+                }) { Text("OK", color = NdOrange) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showTimePicker = false }) { Text("Cancel") }
+            },
+        )
+    }
 
     ModalBottomSheet(
         onDismissRequest = onClose,
@@ -108,12 +171,7 @@ fun ProfileSheet(
                     .fillMaxWidth()
                     .height(180.dp)
                     .background(
-                        Brush.verticalGradient(
-                            listOf(
-                                NdOrange.copy(alpha = 0.15f),
-                                Color.Transparent,
-                            )
-                        )
+                        Brush.verticalGradient(listOf(NdOrange.copy(alpha = 0.15f), Color.Transparent))
                     ),
             ) {
                 IconButton(
@@ -122,13 +180,11 @@ fun ProfileSheet(
                 ) {
                     Icon(Icons.Filled.Close, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
-
                 Column(
                     Modifier.align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
-                    // Avatar
                     Box(
                         Modifier
                             .size(64.dp)
@@ -145,7 +201,6 @@ fun ProfileSheet(
                             color      = NdOrange,
                         )
                     }
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Text(s.email, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                         Text(
@@ -161,12 +216,9 @@ fun ProfileSheet(
                 Modifier.padding(horizontal = 16.dp).padding(bottom = 32.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                // ── Stats row (Dropset style) ─────────────────────────────────
+                // ── Stats row ─────────────────────────────────────────────────
                 if (!s.statsLoading) {
-                    Row(
-                        Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    ) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         ProfileStatCard("🗓", "Days Logged",  s.totalDaysLogged.toString(), Modifier.weight(1f))
                         ProfileStatCard("🔥", "Streak",       "${s.currentStreak}d",        Modifier.weight(1f))
                         ProfileStatCard("🧬", "Compounds",    s.stackSize.toString(),        Modifier.weight(1f))
@@ -179,37 +231,86 @@ fun ProfileSheet(
 
                 Spacer(Modifier.height(4.dp))
 
-                // ── Settings section ──────────────────────────────────────────
-                Text(
-                    "APP",
-                    style    = MaterialTheme.typography.labelSmall.copy(letterSpacing = 1.5.sp),
-                    color    = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(start = 4.dp),
-                )
+                // ── APP section ───────────────────────────────────────────────
+                SectionLabel("APP")
 
                 Column(
-                    Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(14.dp))
+                    Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
                         .background(MaterialTheme.colorScheme.surfaceVariant),
                 ) {
                     SettingsRow(emoji = "📱", title = "Version", value = "1.0.0")
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f), modifier = Modifier.padding(start = 52.dp))
+                    RowDivider()
                     SettingsRow(emoji = "🔬", title = "About", value = "Noodrop")
-                    HorizontalDivider(color = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f), modifier = Modifier.padding(start = 52.dp))
+                    RowDivider()
                     SettingsRow(emoji = "📋", title = "Privacy Policy", value = "→")
                 }
 
                 Spacer(Modifier.height(4.dp))
 
-                Text(
-                    "ACCOUNT",
-                    style    = MaterialTheme.typography.labelSmall.copy(letterSpacing = 1.5.sp),
-                    color    = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(start = 4.dp),
-                )
+                // ── NOTIFICATIONS section ─────────────────────────────────────
+                SectionLabel("NOTIFICATIONS")
 
-                // ── Subscription ─────────────────────────────────────────────
+                Column(
+                    Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
+                        .background(MaterialTheme.colorScheme.surfaceVariant),
+                ) {
+                    // Toggle row
+                    Row(
+                        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment     = Alignment.CenterVertically,
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalAlignment     = Alignment.CenterVertically,
+                        ) {
+                            IconBox("🔔", NdOrange)
+                            Text("Daily Reminder", style = MaterialTheme.typography.bodyMedium)
+                        }
+                        Switch(
+                            checked         = notifOn,
+                            onCheckedChange = { toggleNotif(it) },
+                            colors          = SwitchDefaults.colors(
+                                checkedThumbColor  = Color.White,
+                                checkedTrackColor  = NdOrange,
+                            ),
+                        )
+                    }
+
+                    // Time picker row (only when enabled)
+                    if (notifOn) {
+                        RowDivider()
+                        Row(
+                            Modifier
+                                .fillMaxWidth()
+                                .clickable { showTimePicker = true }
+                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment     = Alignment.CenterVertically,
+                        ) {
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                verticalAlignment     = Alignment.CenterVertically,
+                            ) {
+                                IconBox("⏰", NdOrange)
+                                Text("Reminder Time", style = MaterialTheme.typography.bodyMedium)
+                            }
+                            Text(
+                                "%02d:%02d".format(notifHour, notifMinute),
+                                style      = MaterialTheme.typography.bodyMedium,
+                                fontWeight = FontWeight.SemiBold,
+                                color      = NdOrange,
+                            )
+                        }
+                    }
+                }
+
+                Spacer(Modifier.height(4.dp))
+
+                // ── ACCOUNT section ───────────────────────────────────────────
+                SectionLabel("ACCOUNT")
+
+                // Premium row
                 Box(
                     Modifier
                         .fillMaxWidth()
@@ -227,12 +328,8 @@ fun ProfileSheet(
                             horizontalArrangement = Arrangement.spacedBy(12.dp),
                             verticalAlignment     = Alignment.CenterVertically,
                         ) {
-                            Box(
-                                Modifier.size(32.dp).clip(RoundedCornerShape(8.dp))
-                                    .background(NdOrange.copy(alpha = 0.12f)),
-                                contentAlignment = Alignment.Center,
-                            ) { Text("✦", fontSize = 16.sp, color = NdOrange) }
-                            Text("Premium", style = MaterialTheme.typography.bodyMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold)
+                            IconBox("✦", NdOrange)
+                            Text("Premium", style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.SemiBold)
                         }
                         Text("→", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
@@ -240,7 +337,7 @@ fun ProfileSheet(
 
                 Spacer(Modifier.height(4.dp))
 
-                // Sign out
+                // Sign out row
                 Box(
                     Modifier
                         .fillMaxWidth()
@@ -273,12 +370,38 @@ fun ProfileSheet(
     }
 }
 
-// ── Profile stat card ─────────────────────────────────────────────────────────
+// ── Small helpers ─────────────────────────────────────────────────────────────
+@Composable
+private fun SectionLabel(text: String) {
+    Text(
+        text,
+        style    = MaterialTheme.typography.labelSmall.copy(letterSpacing = 1.5.sp),
+        color    = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(start = 4.dp),
+    )
+}
+
+@Composable
+private fun RowDivider() {
+    HorizontalDivider(
+        color    = MaterialTheme.colorScheme.outline.copy(alpha = 0.5f),
+        modifier = Modifier.padding(start = 52.dp),
+    )
+}
+
+@Composable
+private fun IconBox(emoji: String, tint: Color) {
+    Box(
+        Modifier.size(32.dp).clip(RoundedCornerShape(8.dp))
+            .background(tint.copy(alpha = 0.12f)),
+        contentAlignment = Alignment.Center,
+    ) { Text(emoji, fontSize = 16.sp, color = tint) }
+}
+
 @Composable
 private fun ProfileStatCard(emoji: String, label: String, value: String, modifier: Modifier = Modifier) {
     Box(
-        modifier
-            .clip(RoundedCornerShape(12.dp))
+        modifier.clip(RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .padding(12.dp),
     ) {
@@ -291,23 +414,16 @@ private fun ProfileStatCard(emoji: String, label: String, value: String, modifie
     }
 }
 
-// ── Settings row ──────────────────────────────────────────────────────────────
 @Composable
 private fun SettingsRow(emoji: String, title: String, value: String) {
     Row(
-        Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 12.dp),
+        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment     = Alignment.CenterVertically,
     ) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment     = Alignment.CenterVertically,
-        ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(12.dp), verticalAlignment = Alignment.CenterVertically) {
             Box(
-                Modifier.size(32.dp).clip(RoundedCornerShape(8.dp))
-                    .background(NdOrange.copy(alpha = 0.1f)),
+                Modifier.size(32.dp).clip(RoundedCornerShape(8.dp)).background(NdOrange.copy(alpha = 0.1f)),
                 contentAlignment = Alignment.Center,
             ) { Text(emoji, fontSize = 16.sp) }
             Text(title, style = MaterialTheme.typography.bodyMedium)

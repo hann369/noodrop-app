@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-v30/values-v30.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-v30/values-v30.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\79c7c9df23948cdb9971ab5459638976\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-zh/values-zh.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-zh/values-zh.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\bc5f818366a4cb98c727145895c2e3e1\\transformed\\stripe-core-20.25.0\\res\\values-zh\\values-zh.xml",

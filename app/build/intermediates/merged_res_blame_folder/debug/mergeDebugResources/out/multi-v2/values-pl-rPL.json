@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-pl-rPL/values-pl-rPL.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-pl-rPL/values-pl-rPL.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\37855c41ab18f0d21730f4f341873c24\\transformed\\stripe-ui-core-20.25.0\\res\\values-pl-rPL\\values-pl-rPL.xml",

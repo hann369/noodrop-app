@@ -15,17 +15,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.noodrop.app.ui.common.*
 import com.noodrop.app.ui.theme.*
+import com.noodrop.app.util.SoundManager
 
 @Composable
 fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
-    val s    = vm.state.collectAsState().value
+    val s     = vm.state.collectAsState().value
     val snack = remember { SnackbarHostState() }
+    val context = LocalContext.current
+
     LaunchedEffect(s.toast) { s.toast?.let { snack.showSnackbar(it); vm.clearToast() } }
 
     Scaffold(
@@ -55,7 +59,7 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
                 )
             }
 
-            // ── Checklist (Dropset workout list style) ────────────────────────
+            // ── Checklist ─────────────────────────────────────────────────────
             Box(
                 Modifier
                     .fillMaxWidth()
@@ -86,7 +90,11 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
                                         if (isChecked) NdGreen.copy(alpha = 0.07f)
                                         else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
                                     )
-                                    .clickable { vm.toggleCheck(entry.compoundName) }
+                                    .clickable {
+                                        // Play check sound on check (not uncheck)
+                                        if (entry.compoundName !in s.checked) SoundManager.playCheck()
+                                        vm.toggleCheck(entry.compoundName)
+                                    }
                                     .padding(horizontal = 12.dp, vertical = 11.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment     = Alignment.CenterVertically,
@@ -117,7 +125,10 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
                         Spacer(Modifier.height(4.dp))
 
                         OutlinedButton(
-                            onClick  = vm::saveCheckIn,
+                            onClick  = {
+                                SoundManager.playLog()
+                                vm.saveCheckIn()
+                            },
                             modifier = Modifier.fillMaxWidth().height(44.dp),
                             shape    = RoundedCornerShape(10.dp),
                             border   = androidx.compose.foundation.BorderStroke(1.5.dp, NdOrange),
@@ -141,7 +152,6 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
                     Text("How do you feel today?", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                     Spacer(Modifier.height(8.dp))
 
-                    // FIX: Emojis as literals (no String encoding issues)
                     TgMetricSlider("😊  Mood",      s.mood,   vm::setMood,   hint = null)
                     TgMetricSlider("🌫️  Brain Fog", s.fog,    vm::setFog,    hint = "1 = Crystal clear · 10 = Heavy fog")
                     TgMetricSlider("⚡  Energy",    s.energy, vm::setEnergy, hint = null)
@@ -165,15 +175,15 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
 
                     Spacer(Modifier.height(12.dp))
 
-                    // Log button gradient
                     Box(
                         Modifier
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(12.dp))
-                            .background(
-                                Brush.horizontalGradient(listOf(NdOrange, Color(0xFFFF8C42)))
-                            )
-                            .clickable(onClick = vm::logDay)
+                            .background(Brush.horizontalGradient(listOf(NdOrange, Color(0xFFFF8C42))))
+                            .clickable {
+                                SoundManager.playLog()
+                                vm.logDay()
+                            }
                             .padding(vertical = 14.dp),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -190,13 +200,12 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
     }
 }
 
-// ── Improved metric slider (fixes emoji encoding) ─────────────────────────────
 @Composable
 private fun TgMetricSlider(
-    label:          String,
-    value:          Float,
-    onValueChange:  (Float) -> Unit,
-    hint:           String?,
+    label:         String,
+    value:         Float,
+    onValueChange: (Float) -> Unit,
+    hint:          String?,
 ) {
     Column(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
         Row(
@@ -226,8 +235,8 @@ private fun TgMetricSlider(
             steps         = 8,
             modifier      = Modifier.fillMaxWidth(),
             colors        = SliderDefaults.colors(
-                thumbColor       = NdOrange,
-                activeTrackColor = NdOrange,
+                thumbColor         = NdOrange,
+                activeTrackColor   = NdOrange,
                 inactiveTrackColor = MaterialTheme.colorScheme.surfaceVariant,
             ),
         )

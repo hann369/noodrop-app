@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.noodrop.app-mergeDebugResources-92:/values-mt-rMT/values-mt-rMT.xml",
+            "outputFile": "com.noodrop.app-mergeDebugResources-99:/values-mt-rMT/values-mt-rMT.xml",
             "map": [
                 {
                     "source": "C:\\Users\\hanne\\.gradle\\caches\\8.11.1\\transforms\\f2ac8e0df3c37daeaa33c31e5020cbb5\\transformed\\stripe-3ds2-android-6.1.7\\res\\values-mt-rMT\\values-mt-rMT.xml",
