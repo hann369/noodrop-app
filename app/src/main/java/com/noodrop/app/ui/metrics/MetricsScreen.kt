@@ -2,6 +2,7 @@ package com.noodrop.app.ui.metrics
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -42,11 +43,11 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                 .padding(pad)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(top = 20.dp, bottom = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(14.dp),
+                .padding(top = 24.dp, bottom = 40.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // ── Header ────────────────────────────────────────────────────────
-            Column(Modifier.padding(horizontal = 16.dp)) {
+            Column(Modifier.padding(horizontal = 20.dp)) {
                 Text(
                     "Health Metrics",
                     style      = MaterialTheme.typography.headlineMedium,
@@ -61,7 +62,7 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
 
             // ── Period filter ─────────────────────────────────────────────────
             Row(
-                Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                Modifier.padding(horizontal = 20.dp).fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 listOf(7 to "7D", 14 to "14D", 30 to "30D").forEach { (days, label) ->
@@ -70,10 +71,13 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                         Modifier
                             .clip(RoundedCornerShape(10.dp))
                             .background(
-                                if (selected) NdOrange else MaterialTheme.colorScheme.surfaceVariant
+                                if (selected) NdOrange else MaterialTheme.colorScheme.surface
                             )
-                            .padding(horizontal = 18.dp, vertical = 8.dp)
-                            ,
+                            .then(
+                                if (!selected) Modifier.border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(10.dp))
+                                else Modifier
+                            )
+                            .padding(horizontal = 18.dp, vertical = 8.dp),
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(
@@ -90,7 +94,7 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
             Row(
                 Modifier
                     .horizontalScroll(rememberScrollState())
-                    .padding(horizontal = 16.dp),
+                    .padding(horizontal = 20.dp),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 MetricStatCard("😊", "Mood",   s.avgMood,   NdOrange)
@@ -107,9 +111,10 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                 Box(
                     Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .clip(RoundedCornerShape(16.dp))
+                        .padding(horizontal = 20.dp)
+                        .clip(RoundedCornerShape(18.dp))
                         .background(MaterialTheme.colorScheme.surface)
+                        .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
                         .padding(32.dp),
                     contentAlignment = Alignment.Center,
                 ) {
@@ -130,7 +135,7 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                 // ── Mood & Fog chart ──────────────────────────────────────────
                 ChartCard(
                     title  = "Mood & Brain Fog",
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = 20.dp),
                 ) {
                     SmoothLineChart(
                         series = listOf(
@@ -150,7 +155,7 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                 // ── Energy & Focus chart ──────────────────────────────────────
                 ChartCard(
                     title  = "Energy & Focus",
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = 20.dp),
                 ) {
                     SmoothLineChart(
                         series = listOf(
@@ -170,7 +175,7 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                 // ── Health bar chart ──────────────────────────────────────────
                 ChartCard(
                     title  = "General Health",
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = 20.dp),
                 ) {
                     SimpleBarChart(values = s.logs.map { it.health.toFloat() })
                 }
@@ -178,7 +183,7 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                 // ── Best/Worst day cards ───────────────────────────────────────
                 s.bestWorstAnalysis?.let { analysis ->
                     Row(
-                        Modifier.padding(horizontal = 16.dp),
+                        Modifier.padding(horizontal = 20.dp),
                         horizontalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
                         analysis.bestDay?.let { day ->
@@ -214,10 +219,11 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
                     Box(
                         Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                            .clip(RoundedCornerShape(16.dp))
+                            .padding(horizontal = 20.dp)
+                            .clip(RoundedCornerShape(18.dp))
                             .background(MaterialTheme.colorScheme.surface)
-                            .padding(16.dp),
+                            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+                            .padding(20.dp),
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                             Text("Top Compounds", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -233,10 +239,11 @@ fun MetricsScreen(vm: MetricsViewModel = hiltViewModel()) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .clip(RoundedCornerShape(16.dp))
+                    .padding(horizontal = 20.dp)
+                    .clip(RoundedCornerShape(18.dp))
                     .background(MaterialTheme.colorScheme.surface)
-                    .padding(16.dp),
+                    .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+                    .padding(20.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text("Log History", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -265,6 +272,7 @@ private fun MetricStatCard(
             .width(100.dp)
             .clip(RoundedCornerShape(14.dp))
             .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp))
             .padding(14.dp),
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -308,9 +316,10 @@ private fun ChartCard(
     Box(
         modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(18.dp))
             .background(MaterialTheme.colorScheme.surface)
-            .padding(16.dp),
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+            .padding(20.dp),
     ) {
         Column {
             Text(title, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -325,8 +334,9 @@ private fun ChartCard(
 private fun TrendCard(label: String, value: String, sub: String, color: Color, modifier: Modifier = Modifier) {
     Box(
         modifier
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(color.copy(alpha = 0.08f))
+            .border(0.5.dp, color.copy(alpha = 0.18f), RoundedCornerShape(14.dp))
             .padding(12.dp),
     ) {
         Column {

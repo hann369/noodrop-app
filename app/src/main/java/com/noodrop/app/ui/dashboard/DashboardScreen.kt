@@ -18,8 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -67,9 +66,9 @@ fun DashboardScreen(
             Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp)
-                .padding(top = 20.dp, bottom = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+                .padding(horizontal = 20.dp)
+                .padding(top = 24.dp, bottom = 40.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // ── Greeting ──────────────────────────────────────────────────────
             Row(
@@ -77,136 +76,31 @@ fun DashboardScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment     = Alignment.CenterVertically,
             ) {
-                Column {
+                Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                    Text(
+                        s.dateLabel,
+                        style = MaterialTheme.typography.labelSmall.copy(letterSpacing = 0.8.sp),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                     Text(
                         buildAnnotatedString {
                             append(s.greeting)
                             withStyle(SpanStyle(color = NdOrange)) { append(".") }
                         },
-                        style      = MaterialTheme.typography.headlineMedium,
+                        style      = MaterialTheme.typography.headlineLarge,
                         fontWeight = FontWeight.Bold,
                     )
-                    Text(
-                        s.dateLabel,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
                 }
             }
 
-            // ── Hero Row: Progress Ring + Body Weight style stat ──────────────
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-            ) {
-                // Protocol progress card (Dropset-style circle)
-                HeroCard(
-                    modifier = Modifier.weight(1f),
-                    minHeight = 160.dp,
-                ) {
-                    Column(
-                        Modifier.fillMaxSize().padding(14.dp),
-                        verticalArrangement = Arrangement.SpaceBetween,
-                    ) {
-                        // Top right settings-style icon
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                            Box(
-                                Modifier
-                                    .size(28.dp)
-                                    .clip(CircleShape)
-                                    .background(MaterialTheme.colorScheme.surfaceVariant),
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Text("⚙", fontSize = 12.sp)
-                            }
-                        }
-
-                        // Animated progress ring
-                        Box(Modifier.align(Alignment.CenterHorizontally)) {
-                            ProgressRing(
-                                checked  = s.checkedToday.size,
-                                total    = s.stackSize.coerceAtLeast(1),
-                                size     = 72.dp,
-                                color    = NdOrange,
-                            )
-                        }
-
-                        Column {
-                            Text(
-                                "Today's Stack",
-                                style = MaterialTheme.typography.labelMedium,
-                                fontWeight = FontWeight.SemiBold,
-                            )
-                            Text(
-                                "${s.checkedToday.size}/${s.stackSize} taken",
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                }
-
-                // Streak + Mood column
-                Column(
-                    Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                ) {
-                    HeroCard(modifier = Modifier.fillMaxWidth()) {
-                        Column(Modifier.padding(14.dp)) {
-                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                                Box(
-                                    Modifier.size(28.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surfaceVariant),
-                                    contentAlignment = Alignment.Center,
-                                ) { Text("⚙", fontSize = 12.sp) }
-                            }
-                            Spacer(Modifier.height(4.dp))
-                            Text(
-                                s.streak.toString(),
-                                style      = MaterialTheme.typography.displaySmall,
-                                fontWeight = FontWeight.Bold,
-                                color      = NdOrange,
-                            )
-                            Text(
-                                "Day streak",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-
-                    HeroCard(modifier = Modifier.fillMaxWidth()) {
-                        Column(Modifier.padding(14.dp)) {
-                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                                Box(
-                                    Modifier.size(28.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surfaceVariant),
-                                    contentAlignment = Alignment.Center,
-                                ) { Text("⚙", fontSize = 12.sp) }
-                            }
-                            Spacer(Modifier.height(4.dp))
-                            Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                                Text(
-                                    s.todayMood,
-                                    style      = MaterialTheme.typography.displaySmall,
-                                    fontWeight = FontWeight.Bold,
-                                )
-                                if (s.todayMood != "-") {
-                                    Text(
-                                        "/10",
-                                        style    = MaterialTheme.typography.bodySmall,
-                                        color    = MaterialTheme.colorScheme.onSurfaceVariant,
-                                        modifier = Modifier.padding(bottom = 6.dp),
-                                    )
-                                }
-                            }
-                            Text(
-                                "Mood today",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                            )
-                        }
-                    }
-                }
-            }
+            // ── Hero: Glass Stack Card (full width) ───────────────────────────
+            StackProgressGlassCard(
+                checkedCount = s.checkedToday.size,
+                totalCount   = s.stackSize,
+                modifier     = Modifier
+                    .fillMaxWidth()
+                    .height(172.dp),
+            )
 
             // ── Heatmap (Dropset dot calendar) ────────────────────────────────
             if (s.streakDays.isNotEmpty()) {
@@ -216,10 +110,22 @@ fun DashboardScreen(
                 )
             }
 
+            // ── Activity Rings (Apple Watch style) ────────────────────────────
+            ActivityRingsCard(
+                rings = defaultActivityRings(
+                    checkedCount = s.checkedToday.size,
+                    stackSize    = s.stackSize,
+                    streak       = s.streak,
+                    mood         = s.todayMood.toIntOrNull() ?: 0,
+                    moodStr      = s.todayMood,
+                ),
+                modifier = Modifier.fillMaxWidth(),
+            )
+
             // ── Stack compound list (Dropset workout-row style) ───────────────
             if (s.stack.isNotEmpty()) {
                 HeroCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Row(
                             Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -228,7 +134,7 @@ fun DashboardScreen(
                             Text("Today's Protocol", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                             OrangeChip("${s.checkedToday.size}/${s.stackSize}")
                         }
-                        Spacer(Modifier.height(2.dp))
+                        Spacer(Modifier.height(4.dp))
                         s.stack.forEach { entry ->
                             Row(
                                 Modifier
@@ -236,10 +142,10 @@ fun DashboardScreen(
                                     .clip(RoundedCornerShape(10.dp))
                                     .background(
                                         if (entry.compoundName in s.checkedToday)
-                                            NdGreen.copy(alpha = 0.07f)
-                                        else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
+                                            NdGreen.copy(alpha = 0.06f)
+                                        else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f)
                                     )
-                                    .padding(horizontal = 12.dp, vertical = 9.dp),
+                                    .padding(horizontal = 14.dp, vertical = 11.dp),
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment     = Alignment.CenterVertically,
                             ) {
@@ -254,7 +160,7 @@ fun DashboardScreen(
                                             .clip(CircleShape)
                                             .background(
                                                 if (entry.compoundName in s.checkedToday) NdGreen
-                                                else MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
+                                                else MaterialTheme.colorScheme.outline.copy(alpha = 0.35f)
                                             ),
                                         contentAlignment = Alignment.Center,
                                     ) {
@@ -295,14 +201,14 @@ fun DashboardScreen(
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(14.dp))
+                    .clip(RoundedCornerShape(18.dp))
                     .background(
                         Brush.horizontalGradient(
                             listOf(NdOrange, Color(0xFFFF8C42))
                         )
                     )
                     .clickable(onClick = onLogToday)
-                    .padding(vertical = 16.dp),
+                    .padding(vertical = 18.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
@@ -350,57 +256,11 @@ private fun HeroCard(
     Box(
         modifier
             .defaultMinSize(minHeight = minHeight)
-            .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surface),
+            .clip(RoundedCornerShape(18.dp))
+            .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp)),
         content = content,
     )
-}
-
-// ── Animated Progress Ring (Dropset circle) ───────────────────────────────────
-@Composable
-private fun ProgressRing(
-    checked: Int,
-    total:   Int,
-    size:    androidx.compose.ui.unit.Dp,
-    color:   Color,
-) {
-    val progress = if (total > 0) checked.toFloat() / total else 0f
-    val animatedProgress by animateFloatAsState(
-        targetValue    = progress,
-        animationSpec  = tween(800, easing = EaseOutCubic),
-    )
-
-    Box(Modifier.size(size), contentAlignment = Alignment.Center) {
-        androidx.compose.foundation.Canvas(Modifier.fillMaxSize()) {
-            val strokeWidth = 6.dp.toPx()
-            val radius      = (size.toPx() - strokeWidth) / 2
-            val center      = androidx.compose.ui.geometry.Offset(size.toPx() / 2, size.toPx() / 2)
-
-            // Track
-            drawCircle(
-                color  = color.copy(alpha = 0.15f),
-                radius = radius,
-                style  = Stroke(width = strokeWidth),
-            )
-            // Progress arc
-            if (animatedProgress > 0f) {
-                drawArc(
-                    color      = color,
-                    startAngle = -90f,
-                    sweepAngle = 360f * animatedProgress,
-                    useCenter  = false,
-                    style      = Stroke(width = strokeWidth, cap = StrokeCap.Round),
-                )
-            }
-        }
-        // Center number
-        Text(
-            checked.toString(),
-            style      = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-            color      = color,
-        )
-    }
 }
 
 // ── Heatmap (Dropset dot calendar) ────────────────────────────────────────────
@@ -408,9 +268,10 @@ private fun ProgressRing(
 private fun HeatmapCard(days: List<DayStatus>, modifier: Modifier = Modifier) {
     Box(
         modifier
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(18.dp))
             .background(MaterialTheme.colorScheme.surface)
-            .padding(16.dp),
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+            .padding(18.dp),
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             // Month labels
@@ -484,14 +345,15 @@ private fun LegendDot(color: Color, label: String) {
 private fun QuickStatCard(label: String, value: String, sub: String, modifier: Modifier = Modifier) {
     Box(
         modifier
-            .clip(RoundedCornerShape(14.dp))
+            .clip(RoundedCornerShape(18.dp))
             .background(MaterialTheme.colorScheme.surface)
-            .padding(14.dp),
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+            .padding(16.dp),
     ) {
-        Column {
+        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
                 label.uppercase(),
-                style  = MaterialTheme.typography.labelSmall.copy(letterSpacing = 1.sp),
+                style  = MaterialTheme.typography.labelSmall.copy(letterSpacing = 0.8.sp),
                 color  = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Spacer(Modifier.height(4.dp))

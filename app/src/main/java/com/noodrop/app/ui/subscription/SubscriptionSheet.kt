@@ -165,7 +165,16 @@ fun SubscriptionSheet(
         onDismissRequest = onClose,
         modifier         = Modifier.fillMaxHeight(0.92f),
         containerColor   = MaterialTheme.colorScheme.surface,
-        dragHandle       = null,
+        dragHandle       = {
+            Box(
+                Modifier
+                    .padding(top = 14.dp)
+                    .width(36.dp)
+                    .height(4.dp)
+                    .clip(RoundedCornerShape(2.dp))
+                    .background(MaterialTheme.colorScheme.outline),
+            )
+        },
     ) {
         Column(
             Modifier
@@ -176,43 +185,37 @@ fun SubscriptionSheet(
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
+                    .height(220.dp)
                     .background(
                         Brush.verticalGradient(
                             listOf(
-                                NdOrange.copy(alpha = 0.25f),
-                                NdOrange.copy(alpha = 0.08f),
+                                NdOrange.copy(alpha = 0.20f),
+                                NdOrange.copy(alpha = 0.06f),
                                 Color.Transparent,
                             )
                         )
                     ),
             ) {
-                IconButton(
-                    onClick  = onClose,
-                    modifier = Modifier.align(Alignment.TopEnd).padding(8.dp),
-                ) {
-                    Icon(Icons.Filled.Close, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-                }
-
                 Column(
                     Modifier.align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Box(
                         Modifier
-                            .size(64.dp)
+                            .size(68.dp)
                             .clip(CircleShape)
-                            .background(NdOrange.copy(alpha = 0.15f)),
+                            .background(NdOrange.copy(alpha = 0.12f)),
                         contentAlignment = Alignment.Center,
                     ) {
-                        Text("✦", fontSize = 28.sp, color = NdOrange)
+                        Text("✦", fontSize = 30.sp, color = NdOrange)
                     }
-                    Spacer(Modifier.height(12.dp))
+                    Spacer(Modifier.height(14.dp))
                     Text(
                         "Noodrop Premium",
-                        style      = MaterialTheme.typography.headlineSmall,
+                        style      = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                     )
+                    Spacer(Modifier.height(4.dp))
                     Text(
                         "Unlock your full cognitive potential",
                         style = MaterialTheme.typography.bodySmall,
@@ -222,8 +225,8 @@ fun SubscriptionSheet(
             }
 
             Column(
-                Modifier.padding(horizontal = 20.dp).padding(bottom = 32.dp),
-                verticalArrangement = Arrangement.spacedBy(14.dp),
+                Modifier.padding(horizontal = 22.dp).padding(bottom = 36.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 // ── Current plan ──────────────────────────────────────────────
                 if (s.subscription.isActive && s.subscription.plan != SubscriptionPlan.FREE) {
@@ -249,10 +252,11 @@ fun SubscriptionSheet(
                 Column(
                     Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(14.dp))
+                        .clip(RoundedCornerShape(18.dp))
                         .background(MaterialTheme.colorScheme.surfaceVariant)
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                        .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(16.dp))
+                        .padding(18.dp),
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
                 ) {
                     Text("What you get", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
                     PremiumBenefit("🔬", "All Premium Protocols", "Focus, Longevity & more")
@@ -265,7 +269,7 @@ fun SubscriptionSheet(
                 Box(
                     Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(16.dp))
+                        .clip(RoundedCornerShape(18.dp))
                         .background(
                             Brush.linearGradient(
                                 listOf(
@@ -277,7 +281,7 @@ fun SubscriptionSheet(
                         .border(
                             width = 1.5.dp,
                             brush = Brush.horizontalGradient(listOf(NdOrange.copy(alpha = 0.6f), NdOrange.copy(alpha = 0.2f))),
-                            shape = RoundedCornerShape(16.dp),
+                            shape = RoundedCornerShape(18.dp),
                         )
                         .padding(18.dp),
                 ) {
@@ -405,17 +409,17 @@ fun SubscriptionSheet(
 @Composable
 private fun PremiumBenefit(icon: String, title: String, subtitle: String) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
         verticalAlignment     = Alignment.CenterVertically,
     ) {
         Box(
             Modifier
-                .size(36.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(NdOrange.copy(alpha = 0.1f)),
+                .size(40.dp)
+                .clip(RoundedCornerShape(10.dp))
+                .background(NdOrange.copy(alpha = 0.09f)),
             contentAlignment = Alignment.Center,
-        ) { Text(icon, fontSize = 18.sp) }
-        Column {
+        ) { Text(icon, fontSize = 20.sp) }
+        Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(title, style = MaterialTheme.typography.labelLarge, fontWeight = FontWeight.SemiBold)
             Text(subtitle, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }

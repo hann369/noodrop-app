@@ -16,24 +16,26 @@ val NdBlue   = Color(0xFF2196F3)
 val NdPurple = Color(0xFF9C27B0)
 val NdRed    = Color(0xFFF44336)
 
+
+
 // ── Dark palette ────────────────────────────────────────────────────────────
 private val DarkColors = darkColorScheme(
     primary              = NdOrange,
     onPrimary            = Color.White,
-    primaryContainer     = NdOrange.copy(alpha = 0.15f),
+    primaryContainer     = NdOrange.copy(alpha = 0.12f),
     onPrimaryContainer   = NdOrange,
-    secondary            = Color(0xFFAAAAAA),
+    secondary            = Color(0xFF9A9A9A),
     onSecondary          = Color(0xFF111111),
-    secondaryContainer   = Color(0xFF1C1C1E),
-    onSecondaryContainer = Color(0xFFAAAAAA),
-    background           = Color(0xFF111111),   // Dropset true black
-    onBackground         = Color(0xFFF2F2F2),
-    surface              = Color(0xFF1C1C1E),   // Dropset card surface
-    onSurface            = Color(0xFFF2F2F2),
-    surfaceVariant       = Color(0xFF2C2C2E),   // Dropset inner surface
-    onSurfaceVariant     = Color(0xFF8A8A8E),
-    outline              = Color(0xFF3A3A3C),
-    outlineVariant       = Color(0xFF2C2C2E),
+    secondaryContainer   = Color(0xFF1A1A1C),
+    onSecondaryContainer = Color(0xFF9A9A9A),
+    background           = Color(0xFF0F0F11),   // slightly lifted from pure black — less harsh
+    onBackground         = Color(0xFFEEEEF0),
+    surface              = Color(0xFF191919),   // cards breathe more against bg
+    onSurface            = Color(0xFFEEEEF0),
+    surfaceVariant       = Color(0xFF242426),   // inner chips/inputs
+    onSurfaceVariant     = Color(0xFF7A7A80),
+    outline              = Color(0xFF333336),
+    outlineVariant       = Color(0xFF252527),
     error                = Color(0xFFFF453A),
     onError              = Color.White,
     errorContainer       = Color(0xFF7C1A1A),
@@ -68,21 +70,21 @@ private val LightColors = lightColorScheme(
 // Uses system default font family. If you have Clash Display fonts, replace
 // FontFamily.Default with your custom FontFamily here.
 private val AppTypography = Typography(
-    displayLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold,   fontSize = 57.sp, lineHeight = 64.sp),
-    displayMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold,   fontSize = 45.sp, lineHeight = 52.sp),
-    displaySmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold,   fontSize = 36.sp, lineHeight = 44.sp),
-    headlineLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 32.sp, lineHeight = 40.sp),
-    headlineMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 28.sp, lineHeight = 36.sp),
-    headlineSmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 24.sp, lineHeight = 32.sp),
-    titleLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 22.sp, lineHeight = 28.sp),
-    titleMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,   fontSize = 16.sp, lineHeight = 24.sp),
-    titleSmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,   fontSize = 14.sp, lineHeight = 20.sp),
-    bodyLarge   = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal,   fontSize = 16.sp, lineHeight = 24.sp),
-    bodyMedium  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal,   fontSize = 14.sp, lineHeight = 20.sp),
-    bodySmall   = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal,   fontSize = 12.sp, lineHeight = 16.sp),
-    labelLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,   fontSize = 14.sp, lineHeight = 20.sp),
-    labelMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,   fontSize = 12.sp, lineHeight = 16.sp),
-    labelSmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,   fontSize = 11.sp, lineHeight = 16.sp),
+    displayLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold,      fontSize = 48.sp, lineHeight = 54.sp,  letterSpacing = (-1).sp),
+    displayMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold,      fontSize = 36.sp, lineHeight = 42.sp,  letterSpacing = (-0.5).sp),
+    displaySmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Bold,      fontSize = 28.sp, lineHeight = 34.sp,  letterSpacing = (-0.25).sp),
+    headlineLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 24.sp, lineHeight = 30.sp,  letterSpacing = (-0.2).sp),
+    headlineMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 20.sp, lineHeight = 26.sp,  letterSpacing = (-0.15).sp),
+    headlineSmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold, fontSize = 18.sp, lineHeight = 24.sp),
+    titleLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold,    fontSize = 16.sp, lineHeight = 22.sp),
+    titleMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,      fontSize = 15.sp, lineHeight = 21.sp),
+    titleSmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,      fontSize = 13.sp, lineHeight = 18.sp),
+    bodyLarge   = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal,      fontSize = 16.sp, lineHeight = 24.sp),
+    bodyMedium  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal,      fontSize = 14.sp, lineHeight = 21.sp),
+    bodySmall   = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Normal,      fontSize = 12.sp, lineHeight = 17.sp),
+    labelLarge  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.SemiBold,    fontSize = 13.sp, lineHeight = 18.sp,  letterSpacing = 0.1.sp),
+    labelMedium = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,      fontSize = 12.sp, lineHeight = 16.sp,  letterSpacing = 0.2.sp),
+    labelSmall  = TextStyle(fontFamily = FontFamily.Default, fontWeight = FontWeight.Medium,      fontSize = 10.sp, lineHeight = 14.sp,  letterSpacing = 0.5.sp),
 )
 
 // ── Theme composable ─────────────────────────────────────────────────────────

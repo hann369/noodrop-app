@@ -24,22 +24,22 @@ import javax.inject.Provider;
     "deprecation"
 })
 public final class ThemePreferences_Factory implements Factory<ThemePreferences> {
-  private final Provider<Context> ctxProvider;
+  private final Provider<Context> contextProvider;
 
-  public ThemePreferences_Factory(Provider<Context> ctxProvider) {
-    this.ctxProvider = ctxProvider;
+  public ThemePreferences_Factory(Provider<Context> contextProvider) {
+    this.contextProvider = contextProvider;
   }
 
   @Override
   public ThemePreferences get() {
-    return newInstance(ctxProvider.get());
+    return newInstance(contextProvider.get());
   }
 
-  public static ThemePreferences_Factory create(Provider<Context> ctxProvider) {
-    return new ThemePreferences_Factory(ctxProvider);
+  public static ThemePreferences_Factory create(Provider<Context> contextProvider) {
+    return new ThemePreferences_Factory(contextProvider);
   }
 
-  public static ThemePreferences newInstance(Context ctx) {
-    return new ThemePreferences(ctx);
+  public static ThemePreferences newInstance(Context context) {
+    return new ThemePreferences(context);
   }
 }

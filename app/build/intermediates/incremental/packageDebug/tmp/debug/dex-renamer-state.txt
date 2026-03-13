@@ -1,4 +1,4 @@
-#Thu Mar 12 14:33:54 CET 2026
+#Thu Mar 12 22:15:45 CET 2026
 base.0=C\:\\Users\\hanne\\Desktop\\noodrop-firebase-mvp_5\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\hanne\\Desktop\\noodrop-firebase-mvp_5\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.10=C\:\\Users\\hanne\\Desktop\\noodrop-firebase-mvp_5\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex

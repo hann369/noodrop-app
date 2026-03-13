@@ -41,9 +41,9 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
                 .padding(pad)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp)
-                .padding(top = 20.dp, bottom = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+                .padding(horizontal = 20.dp)
+                .padding(top = 24.dp, bottom = 40.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // ── Header ────────────────────────────────────────────────────────
             Column {
@@ -63,9 +63,10 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(18.dp))
                     .background(MaterialTheme.colorScheme.surface)
-                    .padding(16.dp),
+                    .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+                    .padding(20.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Row(
@@ -144,9 +145,10 @@ fun TrackerScreen(vm: TrackerViewModel = hiltViewModel()) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(18.dp))
                     .background(MaterialTheme.colorScheme.surface)
-                    .padding(16.dp),
+                    .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+                    .padding(20.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text("How do you feel today?", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)

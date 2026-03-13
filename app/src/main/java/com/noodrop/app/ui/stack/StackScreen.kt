@@ -52,9 +52,9 @@ fun StackScreen(vm: StackViewModel = hiltViewModel()) {
                 .padding(pad)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 16.dp)
-                .padding(top = 20.dp, bottom = 32.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+                .padding(horizontal = 20.dp)
+                .padding(top = 24.dp, bottom = 40.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             // ── Header ────────────────────────────────────────────────────────
             Row(
@@ -75,7 +75,7 @@ fun StackScreen(vm: StackViewModel = hiltViewModel()) {
                         .clip(RoundedCornerShape(12.dp))
                         .background(NdOrange)
                         .clickable(onClick = vm::openSheet)
-                        .padding(horizontal = 16.dp, vertical = 10.dp),
+                        .padding(horizontal = 20.dp, vertical = 10.dp),
                 ) {
                     Text(
                         "+ Add",
@@ -112,9 +112,10 @@ fun StackScreen(vm: StackViewModel = hiltViewModel()) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(18.dp))
                     .background(MaterialTheme.colorScheme.surface)
-                    .padding(16.dp),
+                    .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+                    .padding(20.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text("Active Compounds", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -159,9 +160,10 @@ fun StackScreen(vm: StackViewModel = hiltViewModel()) {
             Box(
                 Modifier
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(16.dp))
+                    .clip(RoundedCornerShape(18.dp))
                     .background(MaterialTheme.colorScheme.surface)
-                    .padding(16.dp),
+                    .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
+                    .padding(20.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text("Quick Load — Presets", style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.SemiBold)
@@ -193,6 +195,7 @@ private fun StackStatCard(label: String, value: String, sub: String, modifier: M
         modifier
             .clip(RoundedCornerShape(12.dp))
             .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(12.dp))
             .padding(12.dp),
     ) {
         Column {

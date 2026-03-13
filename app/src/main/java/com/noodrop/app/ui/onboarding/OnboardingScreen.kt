@@ -9,6 +9,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -129,8 +130,16 @@ fun OnboardingScreen(
 ) {
     val s by vm.state.collectAsState()
     val pagerState = rememberPagerState(pageCount = { onboardingPages.size })
+    val scope = rememberCoroutineScope()
 
-    // Sync pager with viewmodel
+    // VM → Pager: when VM page changes (e.g. from Next button), animate pager
+    LaunchedEffect(s.currentPage) {
+        if (pagerState.currentPage != s.currentPage) {
+            pagerState.animateScrollToPage(s.currentPage)
+        }
+    }
+
+    // Pager → VM: when user swipes manually, sync VM
     LaunchedEffect(pagerState.currentPage) {
         vm.setPage(pagerState.currentPage)
     }
@@ -147,7 +156,10 @@ fun OnboardingScreen(
                     if (page == onboardingPages.lastIndex) {
                         onComplete()
                     } else {
-                        vm.nextPage(onboardingPages.size)
+                        scope.launch {
+                            pagerState.animateScrollToPage(page + 1)
+                            vm.setPage(page + 1)
+                        }
                     }
                 },
                 onSkip = onComplete,

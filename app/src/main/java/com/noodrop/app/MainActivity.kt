@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -49,7 +50,7 @@ import javax.inject.Inject
 // ── Root ViewModel ────────────────────────────────────────────────────────────
 data class RootState(
     val authState: AuthState = AuthState.Loading,
-    val isDark: Boolean      = false,
+    val isDark: Boolean      = true,
     val onboardingDone: Boolean = false,
 )
 
@@ -63,19 +64,19 @@ class RootViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            combine(repo.authState, prefs.isDarkFlow) { auth, dark ->
+            combine(repo.authState, prefs.isDarkFlow, prefs.onboardingDoneFlow) { auth, dark, onboarded ->
                 RootState(
                     authState      = auth,
                     isDark         = dark,
-                    onboardingDone = _state.value.onboardingDone,
+                    onboardingDone = onboarded,
                 )
             }.collect { _state.value = it }
         }
     }
 
-    fun toggleDark()        = viewModelScope.launch { prefs.setDark(!_state.value.isDark) }
-    fun signOut()           = repo.signOut()
-    fun completeOnboarding() = _state.update { it.copy(onboardingDone = true) }
+    fun toggleDark()         = viewModelScope.launch { prefs.setDark(!_state.value.isDark) }
+    fun signOut()            = repo.signOut()
+    fun completeOnboarding() = viewModelScope.launch { prefs.setOnboardingDone(true) }
 }
 
 // ── Activity ──────────────────────────────────────────────────────────────────
@@ -150,6 +151,7 @@ fun MainApp(onToggleDark: () -> Unit, onSignOut: () -> Unit, isDark: Boolean) {
             NoodropBottomBar(currentRoute = currentRoute, navController = navController)
         },
         containerColor = MaterialTheme.colorScheme.background,
+        contentWindowInsets = WindowInsets(0.dp), // let floating nav handle its own insets
     ) { padding ->
         NavHost(
             navController    = navController,
@@ -217,15 +219,24 @@ private fun NoodropTopBar(
     )
 }
 
-// ── Bottom nav (Dropset-style pill indicator) ─────────────────────────────────
+// ── Bottom nav (Dropset-style floating pill) ──────────────────────────────────
 @Composable
 private fun NoodropBottomBar(currentRoute: String?, navController: NavController) {
     Box(
-        Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface).navigationBarsPadding()
+        Modifier
+            .fillMaxWidth()
+            .background(Color.Transparent)
+            .navigationBarsPadding()
+            .padding(horizontal = 20.dp, vertical = 12.dp),
     ) {
-        HorizontalDivider(Modifier.align(Alignment.TopCenter), color = MaterialTheme.colorScheme.outlineVariant, thickness = 0.5.dp)
         Row(
-            Modifier.fillMaxWidth().height(64.dp).padding(horizontal = 8.dp),
+            Modifier
+                .fillMaxWidth()
+                .height(60.dp)
+                .clip(RoundedCornerShape(20.dp))
+                .background(MaterialTheme.colorScheme.surface)
+                .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(20.dp))
+                .padding(horizontal = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment     = Alignment.CenterVertically,
         ) {
@@ -248,15 +259,15 @@ private fun NoodropBottomBar(currentRoute: String?, navController: NavController
                         Box(
                             Modifier
                                 .clip(RoundedCornerShape(10.dp))
-                                .background(if (selected) NdOrange.copy(alpha = 0.15f) else Color.Transparent)
-                                .padding(horizontal = 12.dp, vertical = 5.dp),
+                                .background(if (selected) NdOrange.copy(alpha = 0.13f) else Color.Transparent)
+                                .padding(horizontal = 14.dp, vertical = 5.dp),
                             contentAlignment = Alignment.Center,
                         ) {
                             Icon(
                                 imageVector        = item.icon,
                                 contentDescription = item.label,
                                 tint               = if (selected) NdOrange else MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier           = Modifier.size(22.dp),
+                                modifier           = Modifier.size(20.dp),
                             )
                         }
                         Text(

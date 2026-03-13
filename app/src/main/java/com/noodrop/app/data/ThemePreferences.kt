@@ -12,18 +12,28 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("noodrop_prefs")
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "noodrop_prefs")
 
 @Singleton
 class ThemePreferences @Inject constructor(
-    @ApplicationContext private val ctx: Context,
+    @ApplicationContext private val context: Context,
 ) {
-    private val DARK_MODE = booleanPreferencesKey("dark_mode")
+    companion object {
+        private val KEY_DARK          = booleanPreferencesKey("dark_mode")
+        private val KEY_ONBOARDING    = booleanPreferencesKey("onboarding_done")
+    }
 
-    val isDarkFlow: Flow<Boolean> = ctx.dataStore.data
-        .map { it[DARK_MODE] ?: false }
+    val isDarkFlow: Flow<Boolean> = context.dataStore.data
+        .map { it[KEY_DARK] ?: false }
+
+    val onboardingDoneFlow: Flow<Boolean> = context.dataStore.data
+        .map { it[KEY_ONBOARDING] ?: false }
 
     suspend fun setDark(dark: Boolean) {
-        ctx.dataStore.edit { it[DARK_MODE] = dark }
+        context.dataStore.edit { it[KEY_DARK] = dark }
+    }
+
+    suspend fun setOnboardingDone(done: Boolean) {
+        context.dataStore.edit { it[KEY_ONBOARDING] = done }
     }
 }

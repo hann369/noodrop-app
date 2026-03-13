@@ -284,14 +284,14 @@ private fun LibraryHeader(subscription: SubscriptionStatus, onUpgrade: () -> Uni
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 14.dp),
+            .padding(horizontal = 20.dp, vertical = 18.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment     = Alignment.CenterVertically,
     ) {
-        Column {
+        Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
             Text(
                 "Library",
-                style      = MaterialTheme.typography.headlineSmall,
+                style      = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
             )
             Text(
@@ -342,9 +342,10 @@ private fun TgTabBar(tabs: List<String>, selected: Int, onSelect: (Int) -> Unit)
     Row(
         Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
-            .clip(RoundedCornerShape(12.dp))
+            .padding(horizontal = 20.dp)
+            .clip(RoundedCornerShape(14.dp))
             .background(MaterialTheme.colorScheme.surfaceVariant)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp))
             .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(2.dp),
     ) {
@@ -353,13 +354,13 @@ private fun TgTabBar(tabs: List<String>, selected: Int, onSelect: (Int) -> Unit)
             Box(
                 Modifier
                     .weight(1f)
-                    .clip(RoundedCornerShape(9.dp))
+                    .clip(RoundedCornerShape(11.dp))
                     .background(
                         if (isSelected) MaterialTheme.colorScheme.surface
                         else Color.Transparent
                     )
                     .clickable { onSelect(i) }
-                    .padding(vertical = 8.dp),
+                    .padding(vertical = 10.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
@@ -372,7 +373,7 @@ private fun TgTabBar(tabs: List<String>, selected: Int, onSelect: (Int) -> Unit)
             }
         }
     }
-    Spacer(Modifier.height(12.dp))
+    Spacer(Modifier.height(16.dp))
 }
 
 // ── Protocols Tab ─────────────────────────────────────────────────────────────
@@ -382,8 +383,8 @@ private fun ProtocolsContent(s: LibraryState, vm: LibraryViewModel, onSubscribe:
         Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 24.dp),
+            .padding(horizontal = 20.dp)
+            .padding(bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         // Filter chips
@@ -397,15 +398,46 @@ private fun ProtocolsContent(s: LibraryState, vm: LibraryViewModel, onSubscribe:
             NdFilterChip("Coming",    s.filter == ProtocolStatus.COMING_SOON, { vm.setFilter(ProtocolStatus.COMING_SOON) })
         }
 
-        Spacer(Modifier.height(4.dp))
+        Spacer(Modifier.height(6.dp))
 
         s.list.forEach { proto ->
-            TgProtocolCard(
-                protocol     = proto,
-                hasAccess    = s.subscription.isActive && s.subscription.plan != SubscriptionPlan.FREE,
-                appProduct   = s.appProducts.find { ap -> ap.protocolId == proto.id },
-                onClick      = { vm.openDetail(proto) },
-            )
+            val accentColor = when (proto.accent) {
+                ProtocolAccent.ORANGE -> NdOrange
+                ProtocolAccent.GREEN  -> NdGreen
+                ProtocolAccent.BLUE   -> NdBlue
+                ProtocolAccent.PURPLE -> NdPurple
+            }
+            val hasAccess = s.subscription.isActive && s.subscription.plan != SubscriptionPlan.FREE
+            val appProduct = s.appProducts.find { ap -> ap.protocolId == proto.id }
+
+            if (proto.status == ProtocolStatus.COMING_SOON) {
+                // Coming soon → keep original flat card (no flip, not clickable)
+                TgProtocolCard(
+                    protocol   = proto,
+                    hasAccess  = hasAccess,
+                    appProduct = appProduct,
+                    onClick    = {},
+                )
+            } else {
+                FlipProtocolCard(
+                    name        = proto.name,
+                    goal        = proto.goal,
+                    tags        = buildList {
+                        add(proto.goal)
+                        add(proto.duration)
+                        if (proto.status == ProtocolStatus.PAID && !hasAccess) {
+                            add(appProduct?.priceformatted?.takeIf { it.isNotBlank() } ?: "€2.99")
+                        }
+                        if (proto.status == ProtocolStatus.PAID && hasAccess) add("✓ Unlocked")
+                    },
+                    compounds   = proto.compounds.map { name ->
+                        name to ""   // dose not available at list level
+                    },
+                    accentColor = accentColor,
+                    onLoadStack = { vm.loadIntoStack(proto) },
+                    onTap       = { vm.openDetail(proto) },
+                )
+            }
         }
     }
 }
@@ -432,8 +464,9 @@ private fun TgProtocolCard(
     Box(
         Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(18.dp))
             .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
             .then(
                 if (!coming) Modifier.clickable(onClick = onClick)
                 else Modifier
@@ -446,13 +479,13 @@ private fun TgProtocolCard(
                 .fillMaxHeight()
                 .align(Alignment.CenterStart)
                 .background(
-                    Brush.verticalGradient(listOf(accentColor, accentColor.copy(alpha = 0.3f)))
+                    Brush.verticalGradient(listOf(accentColor, accentColor.copy(alpha = 0.2f)))
                 )
         )
 
         Row(
-            Modifier.padding(start = 16.dp, end = 14.dp, top = 14.dp, bottom = 14.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            Modifier.padding(start = 18.dp, end = 16.dp, top = 16.dp, bottom = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(14.dp),
             verticalAlignment     = Alignment.CenterVertically,
         ) {
             // Icon circle
@@ -741,15 +774,15 @@ private fun ProtocolDetailSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        modifier         = Modifier.fillMaxHeight(0.85f),
+        modifier         = Modifier.fillMaxHeight(0.88f),
         containerColor   = MaterialTheme.colorScheme.surface,
     ) {
         Column(
             Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp)
-                .padding(bottom = 32.dp),
+                .padding(horizontal = 22.dp)
+                .padding(bottom = 36.dp),
         ) {
             // Header
             Row(
@@ -842,9 +875,10 @@ private fun ProtocolDetailSheet(
 private fun TgStatChip(label: String, value: String, accent: Color, modifier: Modifier = Modifier) {
     Box(
         modifier
-            .clip(RoundedCornerShape(10.dp))
-            .background(accent.copy(alpha = 0.08f))
-            .padding(horizontal = 12.dp, vertical = 10.dp),
+            .clip(RoundedCornerShape(12.dp))
+            .background(accent.copy(alpha = 0.07f))
+            .border(0.5.dp, accent.copy(alpha = 0.18f), RoundedCornerShape(12.dp))
+            .padding(horizontal = 14.dp, vertical = 12.dp),
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
             Text(value, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold, color = accent)
@@ -859,7 +893,7 @@ private fun CompoundsContent(s: LibraryState, vm: LibraryViewModel) {
     Column(
         Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 20.dp),
     ) {
         OutlinedTextField(
             value         = s.compoundSearch,
@@ -901,11 +935,12 @@ private fun TgCompoundRow(compound: Compound, onClick: () -> Unit) {
     Row(
         Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp))
             .clickable(onClick = onClick)
-            .padding(horizontal = 14.dp, vertical = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+        horizontalArrangement = Arrangement.spacedBy(14.dp),
         verticalAlignment     = Alignment.CenterVertically,
     ) {
         Box(
@@ -951,9 +986,9 @@ private fun GuidesContent(s: LibraryState, vm: LibraryViewModel) {
         Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+            .padding(horizontal = 20.dp)
+            .padding(bottom = 28.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         s.products.forEach { product ->
             TgProductCard(product = product, onPurchase = { vm.purchaseProduct(product.id) }, isLoading = s.isLoading)
@@ -966,10 +1001,11 @@ private fun TgProductCard(product: Product, onPurchase: () -> Unit, isLoading: B
     Box(
         Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(18.dp))
             .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(18.dp))
     ) {
-        Column(Modifier.padding(16.dp)) {
+        Column(Modifier.padding(18.dp)) {
             Row(
                 Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,

@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -213,7 +214,7 @@ fun ProfileSheet(
             }
 
             Column(
-                Modifier.padding(horizontal = 16.dp).padding(bottom = 32.dp),
+                Modifier.padding(horizontal = 20.dp).padding(bottom = 40.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 // ── Stats row ─────────────────────────────────────────────────
@@ -236,7 +237,8 @@ fun ProfileSheet(
 
                 Column(
                     Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceVariant),
+                        .background(MaterialTheme.colorScheme.surface)
+                        .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp)),
                 ) {
                     SettingsRow(emoji = "📱", title = "Version", value = "1.0.0")
                     RowDivider()
@@ -252,11 +254,12 @@ fun ProfileSheet(
 
                 Column(
                     Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceVariant),
+                        .background(MaterialTheme.colorScheme.surface)
+                        .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp)),
                 ) {
                     // Toggle row
                     Row(
-                        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+                        Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment     = Alignment.CenterVertically,
                     ) {
@@ -284,7 +287,7 @@ fun ProfileSheet(
                             Modifier
                                 .fillMaxWidth()
                                 .clickable { showTimePicker = true }
-                                .padding(horizontal = 16.dp, vertical = 12.dp),
+                                .padding(horizontal = 20.dp, vertical = 12.dp),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment     = Alignment.CenterVertically,
                         ) {
@@ -315,9 +318,10 @@ fun ProfileSheet(
                     Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                        .background(MaterialTheme.colorScheme.surface)
+                        .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp))
                         .clickable { onOpenSubscription() }
-                        .padding(horizontal = 16.dp, vertical = 14.dp),
+                        .padding(horizontal = 20.dp, vertical = 14.dp),
                 ) {
                     Row(
                         Modifier.fillMaxWidth(),
@@ -342,9 +346,10 @@ fun ProfileSheet(
                     Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(14.dp))
-                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                        .background(MaterialTheme.colorScheme.surface)
+                        .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp))
                         .clickable { vm.signOut() }
-                        .padding(horizontal = 16.dp, vertical = 14.dp),
+                        .padding(horizontal = 20.dp, vertical = 14.dp),
                 ) {
                     Row(
                         Modifier.fillMaxWidth(),
@@ -401,9 +406,11 @@ private fun IconBox(emoji: String, tint: Color) {
 @Composable
 private fun ProfileStatCard(emoji: String, label: String, value: String, modifier: Modifier = Modifier) {
     Box(
-        modifier.clip(RoundedCornerShape(12.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant)
-            .padding(12.dp),
+        modifier
+            .clip(RoundedCornerShape(14.dp))
+            .background(MaterialTheme.colorScheme.surface)
+            .border(0.5.dp, MaterialTheme.colorScheme.outlineVariant, RoundedCornerShape(14.dp))
+            .padding(14.dp),
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
             Text(emoji, fontSize = 20.sp)
@@ -417,7 +424,7 @@ private fun ProfileStatCard(emoji: String, label: String, value: String, modifie
 @Composable
 private fun SettingsRow(emoji: String, title: String, value: String) {
     Row(
-        Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp),
+        Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment     = Alignment.CenterVertically,
     ) {
